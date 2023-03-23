@@ -1,7 +1,6 @@
 package gui;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JDesktopPane;
@@ -92,6 +91,14 @@ public class MainApplicationFrame extends JFrame
 //        return menuBar;
 //    }
 
+    private JMenuBar generateMenuBar2(){
+        MenuBar menuBar = new MenuBar();
+
+        menuBar.addMenu("Режим отображения", "Управление режимом отображения приложения", );
+
+        //menuBar.add("Режим отображения", "Управление режимом отображения приложения"););
+        return menuBar
+    }
     private JMenuBar generateMenuBar()
     {
         JMenuBar menuBar = new JMenuBar();

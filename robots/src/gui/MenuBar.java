@@ -1,3 +1,5 @@
+package gui;
+
 import javax.swing.*;
 
 public class MenuBar {
@@ -7,14 +9,17 @@ public class MenuBar {
     public MenuBar(){
 
         menuBar = new JMenuBar();
+
     }
 
-    public JMenu addMenu(){
-
+    public void addMenu(){
+        menuBar.add(createMenu());
     }
 
     private JMenu createMenu(){
-
+        JMenu menu = new JMenu();
+        return menu;
     }
 
+    public JMenuBar getJMenuBar(){return  menuBar;}
 }
