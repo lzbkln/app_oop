@@ -91,15 +91,30 @@ public class MainApplicationFrame extends JFrame
 //        return menuBar;
 //    }
 
-    private JMenuBar generateMenuBar2(){
+    private JMenuBar generateMenuBar(){
         MenuBar menuBar = new MenuBar();
 
-        menuBar.addMenu("Режим отображения", "Управление режимом отображения приложения", );
+        JMenu lookAndFeelMenu = menuBar.createMenu(
+                "Режим отображения",
+                "Управление режимом отображения приложения");
+
+        lookAndFeelMenu.add(menuBar.createLookAndFeelItem(this));
+        lookAndFeelMenu.add(menuBar.createCrossplatformLookAndFeelItem(this));
+
+        JMenu testMenu = menuBar.createMenu(
+                "Тесты",
+                "Тестовые команды");
+
+        testMenu.add(menuBar.createTestMenuJMenuItem(this));
+
+        menuBar.addJMenu(lookAndFeelMenu);
+        menuBar.addJMenu(testMenu);
+
 
         //menuBar.add("Режим отображения", "Управление режимом отображения приложения"););
-        return menuBar
+        return menuBar.getJMenuBar();
     }
-    private JMenuBar generateMenuBar()
+    /*private JMenuBar generateMenuBar()
     {
         JMenuBar menuBar = new JMenuBar();
         
@@ -142,9 +157,9 @@ public class MainApplicationFrame extends JFrame
         menuBar.add(lookAndFeelMenu);
         menuBar.add(testMenu);
         return menuBar;
-    }
+    }*/
     
-    private void setLookAndFeel(String className)
+    public void setLookAndFeel(String className)
     {
         try
         {
