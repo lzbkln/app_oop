@@ -12,19 +12,13 @@ public class MenuBar {
     private JMenuBar menuBar;
 
     public MenuBar(){
-
         menuBar = new JMenuBar();
-
     }
-
     public JMenu createMenu(String nameOfMenu, String description) {
-
         JMenu menu = new JMenu(nameOfMenu);
         menu.setMnemonic(KeyEvent.VK_V);
         menu.getAccessibleContext().setAccessibleDescription(
                 description);
-
-
         return menu;
     }
 
