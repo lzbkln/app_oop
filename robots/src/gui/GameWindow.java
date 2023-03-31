@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 
 public class GameWindow extends JInternalFrame
 {
+    //всё забрали
     private final GameVisualizer m_visualizer;
     public GameWindow() 
     {
@@ -17,4 +18,5 @@ public class GameWindow extends JInternalFrame
         getContentPane().add(panel);
         pack();
     }
+    //Done в gameWindow
 }
