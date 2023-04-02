@@ -2,6 +2,7 @@ package View;
 
 import java.awt.*;
 
+//рисует и заполняет овал
 public class DrawFigure {
     protected static void fillOval(Graphics g, int centerX, int centerY, int diam1, int diam2)
     {
