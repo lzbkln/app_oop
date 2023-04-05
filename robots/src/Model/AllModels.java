@@ -60,7 +60,7 @@ public class AllModels {
 
     protected void onModelUpdateEvent()
     {
-        double distance = distance(robot.getPositionX(), robot.getPositionY(),
+        double distance = distance(target.getPositionX(), target.getPositionY(),
                 robot.getPositionX(), robot.getPositionY());
         if (distance < 0.5)
         {
