@@ -1,6 +1,6 @@
 package Model;
 
-public class Robot extends Entity{
+public class Robot{
     private double positionX = 100;
     private double positionY = 100;
 
@@ -34,8 +34,8 @@ public class Robot extends Entity{
         return robotDirection;
     }
 
-    @Override
+    /*@Override
     public void update() {
 
-    }
+    }*/
 }

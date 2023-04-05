@@ -3,8 +3,6 @@ package ViewModel;
 
 import Model.GameModel;
 import View.GameView;
-import View.MainDrawer;
-import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Timer;

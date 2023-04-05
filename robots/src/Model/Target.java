@@ -1,6 +1,6 @@
 package Model;
 
-public class Target extends Entity{
+public class Target{
     private volatile int x;
     private volatile int y;
 
@@ -29,8 +29,8 @@ public class Target extends Entity{
         return y;
     }
 
-    @Override
+    /*@Override
     public void update() {
 
-    }
+    }*/
 }
