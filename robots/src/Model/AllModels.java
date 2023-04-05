@@ -68,7 +68,7 @@ public class AllModels {
         }
         double velocity = Robot.maxVelocity;
         double angleToTarget = angleTo(robot.getPositionX(), robot.getPositionY(),
-                robot.getPositionX(), robot.getPositionY());
+                target.getPositionX(), target.getPositionY());
         double angularVelocity = 0;
         if (angleToTarget > robot.getDirection())
         {
