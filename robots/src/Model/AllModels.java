@@ -13,6 +13,12 @@ public class AllModels {
     private Target target;
     private Dimension dimension;
 
+    public AllModels()
+    {
+        this.robot = new Robot();
+        this.target = new Target();
+    }
+
     public void setTargetPosition(Point p) {
         target.setPositionX(p.x);
         target.setPositionY(p.y);
@@ -27,13 +33,6 @@ public class AllModels {
         return this.dimension;
     }
 
-    private final Timer m_timer = initTimer();
-
-    private static Timer initTimer()
-    {
-        Timer timer = new Timer("events generator", true);
-        return timer;
-    }
 
     public Robot getRobot() {
         return robot;
@@ -43,44 +42,6 @@ public class AllModels {
         return target;
     }
 
-    public AllModels()
-    {
-        this.robot = new Robot();
-        this.target = new Target();
-        //это в вьюмодел???
-//        m_timer.schedule(new TimerTask()
-//        {
-//            @Override
-//            public void run()
-//            {
-//                onRedrawEvent();
-//            }
-//        }, 0, 50);
-//        m_timer.schedule(new TimerTask()
-//        {
-//            @Override
-//            public void run()
-//            {
-//                onModelUpdateEvent();
-//            }
-//        }, 0, 10);
-//        addMouseListener(new MouseAdapter()
-//        {
-//            @Override
-//            public void mouseClicked(MouseEvent e)
-//            {
-//                setTargetPosition(e.getPoint());
-//                repaint();
-//            }
-//        });
-//        setDoubleBuffered(true);
-    }
-
-
-//      protected void onRedrawEvent()
-//    {
-//        EventQueue.invokeLater(this::repaint);
-//    }
 
     private static double distance(double x1, double y1, double x2, double y2)
     {

@@ -36,7 +36,8 @@ public class MainApplicationFrame extends JFrame
         setJMenuBar(generateMenuBar());
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
-    
+
+    //в MainDrawer
     protected LogWindow createLogWindow()
     {
         LogWindow logWindow = new LogWindow(Logger.getDefaultLogSource());
@@ -47,7 +48,8 @@ public class MainApplicationFrame extends JFrame
         Logger.debug("Протокол работает");
         return logWindow;
     }
-    
+
+    //в MainDrawer
     protected void addWindow(JInternalFrame frame)
     {
         desktopPane.add(frame);

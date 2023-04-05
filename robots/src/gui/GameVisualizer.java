@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.geom.AffineTransform;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -24,15 +25,16 @@ public class GameVisualizer extends JPanel
 //        return timer;
 //    }
 
+
     private volatile double m_robotPositionX = 150;
     private volatile double m_robotPositionY = 150;
-    private volatile double m_robotDirection = 0; 
+    private volatile double m_robotDirection = 0;
 
     private volatile int m_targetPositionX = 150;
     private volatile int m_targetPositionY = 100;
     
     private static final double maxVelocity = 0.1; 
-    private static final double maxAngularVelocity = 0.001; 
+    private static final double maxAngularVelocity = 0.001;
     
     public GameVisualizer() 
     {
