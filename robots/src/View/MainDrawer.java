@@ -1,42 +1,36 @@
-package gui;
+package View;
 
-import java.awt.*;
-import java.awt.event.KeyEvent;
-
-import javax.swing.JDesktopPane;
-import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-
+import ViewModel.ViewModel;
+import gui.LogWindow;;
 import log.Logger;
 
-public class MainApplicationFrame extends JFrame
-{
+import javax.swing.*;
+import java.awt.*;
+
+public class MainDrawer extends JFrame {
     private final JDesktopPane desktopPane = new JDesktopPane();
-    public MainApplicationFrame() {
+
+    public MainDrawer(ViewModel viewModel) {
         final int inset = 50;
         final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         setBounds(inset, inset, screenSize.width - inset * 2, screenSize.height - inset * 2);
 
         setContentPane(desktopPane);
-        
-        
+
+
         LogWindow logWindow = createLogWindow();
         addWindow(logWindow);
 
-        GameWindow gameWindow = new GameWindow();
+
+
+        GameWindow gameWindow = new GameWindow(viewModel.getGameView());
         gameWindow.setSize(400,  400);
         addWindow(gameWindow);
 
         setJMenuBar(generateMenuBar());
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
-    
+
     protected LogWindow createLogWindow()
     {
         LogWindow logWindow = new LogWindow(Logger.getDefaultLogSource());
@@ -47,7 +41,7 @@ public class MainApplicationFrame extends JFrame
         Logger.debug("Протокол работает");
         return logWindow;
     }
-    
+
     protected void addWindow(JInternalFrame frame)
     {
         desktopPane.add(frame);
@@ -55,7 +49,7 @@ public class MainApplicationFrame extends JFrame
     }
 
     private JMenuBar generateMenuBar(){
-        MenuBar menuBar = new MenuBar();
+        MenuBarView menuBar = new MenuBarView();
 
         JMenu lookAndFeelMenu = menuBar.createMenu(
                 "Режим отображения",
@@ -77,7 +71,6 @@ public class MainApplicationFrame extends JFrame
         //menuBar.add("Режим отображения", "Управление режимом отображения приложения"););
         return menuBar.getJMenuBar();
     }
-
     public void setLookAndFeel(String className)
     {
         try
@@ -86,7 +79,7 @@ public class MainApplicationFrame extends JFrame
             SwingUtilities.updateComponentTreeUI(this);
         }
         catch (ClassNotFoundException | InstantiationException
-            | IllegalAccessException | UnsupportedLookAndFeelException e)
+               | IllegalAccessException | UnsupportedLookAndFeelException e)
         {
             // just ignore
         }

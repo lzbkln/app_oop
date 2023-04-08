@@ -1,6 +1,6 @@
 package Model;
 
-public class Target {
+public class Target{
     private volatile int x;
     private volatile int y;
 
@@ -28,4 +28,9 @@ public class Target {
     public int getPositionY() {
         return y;
     }
+
+    /*@Override
+    public void update() {
+
+    }*/
 }

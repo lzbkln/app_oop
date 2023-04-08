@@ -3,6 +3,7 @@ package View;
 import javax.swing.*;
 import java.awt.*;
 
+//рисует маленькое вложенное игровое поле
 public class GameWindow extends JInternalFrame {
     public GameWindow(GameView view)
     {

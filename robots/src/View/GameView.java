@@ -10,11 +10,14 @@ public class GameView extends JPanel {
     TargetView targetView;
     private final AllModels model;
 
-    //через AllModels, методы получающие робота и цель
     public GameView(AllModels model){
         this.model = model;
         robotView = new RobotView();
         targetView = new TargetView();
+    }
+
+    public void update(){
+        EventQueue.invokeLater(this::repaint);
     }
     @Override
     public void paint(Graphics g)

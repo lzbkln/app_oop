@@ -1,6 +1,6 @@
 package Model;
 
-public class Robot {
+public class Robot{
     private double positionX = 100;
     private double positionY = 100;
 
@@ -34,4 +34,8 @@ public class Robot {
         return robotDirection;
     }
 
+    /*@Override
+    public void update() {
+
+    }*/
 }

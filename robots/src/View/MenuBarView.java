@@ -1,17 +1,15 @@
-package gui;
+package View;
 
 import log.Logger;
 
 import javax.swing.*;
 import java.awt.event.KeyEvent;
 
-import static javax.swing.UIManager.setLookAndFeel;
-
-public class MenuBar {
+public class MenuBarView {
 
     private JMenuBar menuBar;
 
-    public MenuBar(){
+    public MenuBarView(){
         menuBar = new JMenuBar();
     }
     public JMenu createMenu(String nameOfMenu, String description) {
@@ -22,7 +20,7 @@ public class MenuBar {
         return menu;
     }
 
-    public JMenuItem createLookAndFeelItem(MainApplicationFrame appFrame){
+    public JMenuItem createLookAndFeelItem(MainDrawer appFrame){
         JMenuItem systemLookAndFeel = new JMenuItem("Системная схема", KeyEvent.VK_S);
         systemLookAndFeel.addActionListener((event) -> {
             appFrame.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -31,7 +29,7 @@ public class MenuBar {
         return systemLookAndFeel;
     }
 
-    public JMenuItem createCrossplatformLookAndFeelItem(MainApplicationFrame appFrame){
+    public JMenuItem createCrossplatformLookAndFeelItem(MainDrawer appFrame){
         JMenuItem crossplatformLookAndFeel = new JMenuItem("Универсальная схема", KeyEvent.VK_S);
         crossplatformLookAndFeel.addActionListener((event) -> {
             appFrame.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
@@ -40,7 +38,7 @@ public class MenuBar {
         return crossplatformLookAndFeel;
     }
 
-    public JMenuItem createTestMenuJMenuItem(MainApplicationFrame appFrame){
+    public JMenuItem createTestMenuJMenuItem(MainDrawer appFrame){
         JMenuItem addLogMessageItem = new JMenuItem("Сообщение в лог", KeyEvent.VK_S);
         addLogMessageItem.addActionListener((event) -> {
             Logger.debug("Новая строка");
