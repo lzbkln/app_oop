@@ -1,6 +1,5 @@
 package View;
 
-import gui.MainApplicationFrame;
 import log.Logger;
 
 import javax.swing.*;
