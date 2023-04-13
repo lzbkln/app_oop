@@ -1,6 +1,6 @@
-package View;
+package org.dl.app.View;
 
-import log.Logger;
+import org.dl.app.log.Logger;
 
 import javax.swing.*;
 import java.awt.event.KeyEvent;

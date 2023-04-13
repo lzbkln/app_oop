@@ -1,8 +1,8 @@
-package ViewModel;
+package main.java.ViewModel;
 
 
-import Model.GameModel;
-import View.GameView;
+import org.dl.app.Model.GameModel;
+import org.dl.app.View.GameView;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Timer;

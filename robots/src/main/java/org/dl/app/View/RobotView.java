@@ -1,12 +1,12 @@
-package View;
+package org.dl.app.View;
 
-import Model.Robot;
+import org.dl.app.Model.Robot;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 
-import static View.DrawFigure.drawOval;
-import static View.DrawFigure.fillOval;
+import static org.dl.app.View.DrawFigure.drawOval;
+import static org.dl.app.View.DrawFigure.fillOval;
 
 public class RobotView {
 

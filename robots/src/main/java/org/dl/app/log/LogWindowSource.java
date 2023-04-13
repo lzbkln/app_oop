@@ -1,4 +1,4 @@
-package log;
+package org.dl.app.log;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

@@ -1,8 +1,8 @@
-package View;
+package org.dl.app.View;
 
-import ViewModel.ViewModel;
-import gui.LogWindow;;
-import log.Logger;
+import main.java.ViewModel.ViewModel;
+import org.dl.app.gui.LogWindow;;
+import org.dl.app.log.Logger;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,4 +1,4 @@
-package Model;
+package org.dl.app.Model;
 
 public class Robot{
     private double positionX = 100;

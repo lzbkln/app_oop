@@ -1,6 +1,6 @@
-package View;
+package org.dl.app.View;
 
-import Model.AllModels;
+import org.dl.app.Model.AllModels;
 
 import javax.swing.*;
 import java.awt.*;

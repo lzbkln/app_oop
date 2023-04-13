@@ -1,4 +1,4 @@
-package log;
+package org.dl.app.log;
 
 public enum LogLevel
 {
