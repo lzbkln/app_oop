@@ -54,6 +54,12 @@ public class Robot{
         positionY = newY;
         double newDirection = model.asNormalizedRadians(robotDirection + angularVelocity * duration);
         robotDirection = newDirection;
+        if (positionX < 0) {newDirection = -540; positionX = 10;}
+        else if (positionY > 400) {newDirection = -8; positionY = 390;}
+        else if (positionX > 500) {newDirection = 8; positionX = 395;}
+        else if (positionY < 0) {newDirection = 8; positionY = 10;}
+        else newDirection = model.asNormalizedRadians(robotDirection + angularVelocity * duration);
+        robotDirection = newDirection;
     }
 
     /*@Override

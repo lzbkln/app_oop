@@ -41,7 +41,10 @@ public class LogWindow extends JInternalFrame implements LogChangeListener
         m_logContent.setText(content.toString());
         m_logContent.invalidate();
     }
-    
+
+    public TextArea getMLogContent(){
+        return m_logContent;
+    }
     @Override
     public void onLogChanged()
     {
