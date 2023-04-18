@@ -3,7 +3,7 @@ package org.dl.app.gui;
 import org.dl.app.Model.GameModel;
 import org.dl.app.View.GameView;
 import org.dl.app.View.MainDrawer;
-import main.java.ViewModel.ViewModel;
+import org.dl.app.ViewModel.ViewModel;
 
 import java.awt.Frame;
 

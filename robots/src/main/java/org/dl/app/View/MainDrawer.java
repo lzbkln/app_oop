@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import main.java.ViewModel.ViewModel;
+import org.dl.app.ViewModel.ViewModel;
 import org.dl.app.gui.LogWindow;;
 import org.dl.app.log.Logger;
 
