@@ -59,11 +59,12 @@ public class AllModels {
         moveRobot(velocity, angularVelocity, 10);
     }
 
-    private static double applyLimits(double value, double min, double max)
-    {
+    public static double applyLimits(double value, double min, double max) {
         if (value < min)
             return min;
-        return Math.min(value, max);
+        if (value > max)
+            return max;
+        return value;
     }
 
     private void moveRobot(double velocity, double angularVelocity, double duration) {
@@ -87,17 +88,11 @@ public class AllModels {
         robot.setDirection(newDirection);
     }
 
-    private static double asNormalizedRadians(double angle)
-    {
-        while (angle < 0)
-        {
-            angle += 2*Math.PI;
-        }
-        while (angle >= 2*Math.PI)
-        {
-            angle -= 2*Math.PI;
-        }
-        return angle;
+    public static double asNormalizedRadians(double angle) {
+        double newAngle = angle;
+        while (newAngle <= -180) newAngle += 360;
+        while (newAngle > 180) newAngle -= 360;
+        return newAngle;
     }
 
 }
