@@ -49,11 +49,18 @@ public class Math {
         double angleToTarget = angleTo(robot.getPositionX(), robot.getPositionY(),
                 target.getPositionX(), target.getPositionY());
         double angularVelocity = 0;
-        if (angleToTarget > robot.getDirection()) {
-            angularVelocity = Robot.maxAngularVelocity;
-        }
-        if (angleToTarget < robot.getDirection()) {
-            angularVelocity = -Robot.maxAngularVelocity;
+        if (java.lang.Math.abs(robot.getDirection() - angleToTarget) < 10e-7) {
+            angularVelocity = robot.getDirection();
+        } else if (robot.getDirection() >= java.lang.Math.PI) {
+            if (robot.getDirection() - java.lang.Math.PI < angleToTarget && angleToTarget < robot.getDirection())
+                angularVelocity = -Robot.maxAngularVelocity;
+            else
+                angularVelocity = Robot.maxAngularVelocity;
+        } else {
+            if (robot.getDirection() < angleToTarget && angleToTarget < robot.getDirection() + java.lang.Math.PI)
+                angularVelocity = Robot.maxAngularVelocity;
+            else
+                angularVelocity = -Robot.maxAngularVelocity;
         }
         robot.moveRobot(velocity, angularVelocity, 10.0);
     }
