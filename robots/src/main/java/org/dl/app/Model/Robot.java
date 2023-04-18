@@ -8,6 +8,7 @@ public class Robot{
     public static final double maxAngularVelocity = 0.005;
 
     private volatile double robotDirection = 0;
+    AllModels model;
 
 
     public double getPositionX() {
@@ -32,6 +33,27 @@ public class Robot{
 
     public double getDirection() {
         return robotDirection;
+    }
+
+    public void moveRobot(double velocity, double angularVelocity, double duration) {
+        velocity = model.applyLimits(velocity, 0, maxVelocity);
+        angularVelocity = model.applyLimits(angularVelocity, -maxAngularVelocity, maxAngularVelocity);
+        double newX = positionX + velocity / angularVelocity *
+                (Math.sin(robotDirection  + angularVelocity * duration) -
+                        Math.sin(robotDirection));
+        if (!Double.isFinite(newX)) {
+            newX = positionX + velocity * duration * Math.cos(robotDirection);
+        }
+        double newY = positionY - velocity / angularVelocity *
+                (Math.cos(robotDirection  + angularVelocity * duration) -
+                        Math.cos(robotDirection));
+        if (!Double.isFinite(newY)) {
+            newY = positionY + velocity * duration * Math.sin(robotDirection);
+        }
+        positionX = newX;
+        positionY = newY;
+        double newDirection = model.asNormalizedRadians(robotDirection + angularVelocity * duration);
+        robotDirection = newDirection;
     }
 
     /*@Override

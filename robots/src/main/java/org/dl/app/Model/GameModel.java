@@ -1,6 +1,4 @@
 package org.dl.app.Model;
-
-
 import java.awt.*;
 
 public class GameModel {

@@ -36,7 +36,6 @@ public class AllModels {
     private static double angleTo(double fromX, double fromY, double toX, double toY) {
         double diffX = toX - fromX;
         double diffY = toY - fromY;
-
         return asNormalizedRadians(Math.atan2(diffY, diffX));
     }
 
@@ -56,7 +55,7 @@ public class AllModels {
         if (angleToTarget < robot.getDirection()) {
             angularVelocity = -Robot.maxAngularVelocity;
         }
-        moveRobot(velocity, angularVelocity, 10);
+        robot.moveRobot(velocity, angularVelocity, 10.0);
     }
 
     public static double applyLimits(double value, double min, double max) {
@@ -65,27 +64,6 @@ public class AllModels {
         if (value > max)
             return max;
         return value;
-    }
-
-    private void moveRobot(double velocity, double angularVelocity, double duration) {
-        velocity = applyLimits(velocity, 0, Robot.maxVelocity);
-        angularVelocity = applyLimits(angularVelocity, -Robot.maxAngularVelocity, Robot.maxAngularVelocity);
-        double newX = robot.getPositionX() + velocity / angularVelocity *
-                (Math.sin(robot.getDirection() + angularVelocity * duration) -
-                        Math.sin(robot.getDirection()));
-        if (!Double.isFinite(newX)) {
-            newX = robot.getPositionX() + velocity * duration * Math.cos(robot.getDirection());
-        }
-        double newY = robot.getPositionY() - velocity / angularVelocity *
-                (Math.cos(robot.getDirection() + angularVelocity * duration) -
-                        Math.cos(robot.getDirection()));
-        if (!Double.isFinite(newY)) {
-            newY = robot.getPositionY() + velocity * duration * Math.sin(robot.getDirection());
-        }
-        robot.setPositionX(newX);
-        robot.setPositionY(newY);
-        double newDirection = asNormalizedRadians(robot.getDirection() + angularVelocity * duration);
-        robot.setDirection(newDirection);
     }
 
     public static double asNormalizedRadians(double angle) {

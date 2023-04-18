@@ -8,6 +8,7 @@ import java.awt.*;
 public class GameView extends JPanel {
     RobotView robotView;
     TargetView targetView;
+    //через что-то, интерфейс entityCopied
     private final AllModels model;
 
     public GameView(AllModels model){
