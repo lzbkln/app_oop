@@ -3,10 +3,10 @@ import java.awt.*;
 
 public class GameModel {
 
-    AllModels models;
+    Math models;
 
     public GameModel(){
-        this.models = new AllModels();
+        this.models = new Math();
     }
 
     public void update(){
@@ -17,5 +17,5 @@ public class GameModel {
         models.setTargetPosition(p);
     }
 
-    public AllModels getmodel(){return models;}
+    public Math getmodel(){return models;}
 }

@@ -1,4 +1,4 @@
-package main.java.ViewModel;
+package org.dl.app.ViewModel;
 
 
 import org.dl.app.Model.GameModel;
@@ -9,8 +9,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class ViewModel {
-    //собираем всё вместе
-
     private GameModel gameModel;
     private GameView gameView;
     private final Timer m_timer = initTimer();

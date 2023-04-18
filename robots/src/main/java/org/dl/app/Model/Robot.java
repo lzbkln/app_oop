@@ -8,7 +8,7 @@ public class Robot{
     public static final double maxAngularVelocity = 0.005;
 
     private volatile double robotDirection = 0;
-    AllModels model;
+    Math model;
 
 
     public double getPositionX() {
@@ -39,16 +39,16 @@ public class Robot{
         velocity = model.applyLimits(velocity, 0, maxVelocity);
         angularVelocity = model.applyLimits(angularVelocity, -maxAngularVelocity, maxAngularVelocity);
         double newX = positionX + velocity / angularVelocity *
-                (Math.sin(robotDirection  + angularVelocity * duration) -
-                        Math.sin(robotDirection));
+                (java.lang.Math.sin(robotDirection  + angularVelocity * duration) -
+                        java.lang.Math.sin(robotDirection));
         if (!Double.isFinite(newX)) {
-            newX = positionX + velocity * duration * Math.cos(robotDirection);
+            newX = positionX + velocity * duration * java.lang.Math.cos(robotDirection);
         }
         double newY = positionY - velocity / angularVelocity *
-                (Math.cos(robotDirection  + angularVelocity * duration) -
-                        Math.cos(robotDirection));
+                (java.lang.Math.cos(robotDirection  + angularVelocity * duration) -
+                        java.lang.Math.cos(robotDirection));
         if (!Double.isFinite(newY)) {
-            newY = positionY + velocity * duration * Math.sin(robotDirection);
+            newY = positionY + velocity * duration * java.lang.Math.sin(robotDirection);
         }
         positionX = newX;
         positionY = newY;
