@@ -1,53 +1,112 @@
 package org.dl.app.View;
 
+import org.dl.app.localisation.Localisation;
 import org.dl.app.log.Logger;
 
 import javax.swing.*;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.Locale;
 
 public class MenuBarView {
+    private final JFrame mainFrame;
+    private final ArrayList<AbstractWindow> windows;
 
-    private JMenuBar menuBar;
-
-    public MenuBarView(){
-        menuBar = new JMenuBar();
-    }
-    public JMenu createMenu(String nameOfMenu, String description) {
-        JMenu menu = new JMenu(nameOfMenu);
-        menu.setMnemonic(KeyEvent.VK_V);
-        menu.getAccessibleContext().setAccessibleDescription(
-                description);
-        return menu;
+    public MenuBarView(JFrame mainFrame, ArrayList<AbstractWindow> windows) {
+        this.mainFrame = mainFrame;
+        this.windows = windows;
     }
 
-    public JMenuItem createLookAndFeelItem(MainDrawer appFrame){
-        JMenuItem systemLookAndFeel = new JMenuItem("Системная схема", KeyEvent.VK_S);
-        systemLookAndFeel.addActionListener((event) -> {
-            appFrame.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            appFrame.invalidate();
+    public JMenuBar generateMenu() {
+        JMenuBar menuBar = new JMenuBar();
+
+        menuBar.add(generateLanguageMenu());
+        menuBar.add(generateLookAndFeelItem());
+        menuBar.add(generateLogMenu());
+        menuBar.add(generateExitMenu());
+        return menuBar;
+    }
+
+    private JMenu generateLanguageMenu() {
+        JMenu local = new JMenu(Localisation.getString("language"));
+        local.setMnemonic(KeyEvent.VK_W);
+        local.getAccessibleContext().setAccessibleDescription("Смена языка на доступные");
+        JMenuItem setLangEn = new JMenuItem(Localisation.getString("language.english"), KeyEvent.VK_N);
+        JMenuItem setLangRu = new JMenuItem(Localisation.getString("language.russian"), KeyEvent.VK_N);
+        setLangEn.addActionListener((event) -> {
+            Localisation.changeLocalisation(new Locale("UK"));
+            updateGUI();
         });
-        return systemLookAndFeel;
+        setLangRu.addActionListener((event) -> {
+            Localisation.changeLocalisation(new Locale("RU"));
+            updateGUI();
+        });
+        local.add(setLangEn);
+        local.add(setLangRu);
+        return local;
     }
 
-    public JMenuItem createCrossplatformLookAndFeelItem(MainDrawer appFrame){
-        JMenuItem crossplatformLookAndFeel = new JMenuItem("Универсальная схема", KeyEvent.VK_S);
+    private JMenu generateExitMenu() {
+        JMenu exitMenu = new JMenu(Localisation.getString("exit"));
+        JMenuItem exitMenuItem = new JMenuItem(Localisation.getString("exit"));
+        exitMenuItem.addActionListener((event) -> {
+            mainFrame.dispatchEvent(new WindowEvent(mainFrame, WindowEvent.WINDOW_CLOSING));
+        });
+        exitMenu.add(exitMenuItem);
+        return exitMenu;
+    }
+
+    private void updateGUI() {
+        mainFrame.setJMenuBar(generateMenu());
+        for (AbstractWindow window: windows) {
+            window.updateLocalisation();
+        }
+    }
+
+    public JMenuItem generateLookAndFeelItem(){
+        JMenu lookAndFeelMenu = new JMenu(Localisation.getString("display"));
+        lookAndFeelMenu.setMnemonic(KeyEvent.VK_V);
+        lookAndFeelMenu.getAccessibleContext().setAccessibleDescription("Управление режимом отображения приложения");
+        addLookAndFeelItem(lookAndFeelMenu, "display.universal",
+                UIManager.getCrossPlatformLookAndFeelClassName());
+        addLookAndFeelItem(lookAndFeelMenu, "display.system",
+                UIManager.getSystemLookAndFeelClassName());
+
+        return lookAndFeelMenu;
+    }
+
+    private void addLookAndFeelItem(JMenu lookAndFeelMenu, String name, String className) {
+        JMenuItem crossplatformLookAndFeel = new JMenuItem(
+                Localisation.getString(name),
+                KeyEvent.VK_S
+        );
         crossplatformLookAndFeel.addActionListener((event) -> {
-            appFrame.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-            appFrame.invalidate();
+            setLookAndFeel(className);
+            mainFrame.invalidate();
         });
-        return crossplatformLookAndFeel;
+        lookAndFeelMenu.add(crossplatformLookAndFeel);
     }
 
-    public JMenuItem createTestMenuJMenuItem(MainDrawer appFrame){
-        JMenuItem addLogMessageItem = new JMenuItem("Сообщение в лог", KeyEvent.VK_S);
+    private void setLookAndFeel(String className) {
+        try {
+            UIManager.setLookAndFeel(className);
+            SwingUtilities.updateComponentTreeUI(mainFrame);
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
+                 UnsupportedLookAndFeelException e) {
+            // just ignore
+        }
+    }
+
+    private JMenu generateLogMenu() {
+        JMenu testMenu = new JMenu(Localisation.getString("tests"));
+        testMenu.setMnemonic(KeyEvent.VK_T);
+        testMenu.getAccessibleContext().setAccessibleDescription("Тестовые команды");
+        JMenuItem addLogMessageItem = new JMenuItem(Localisation.getString("test.message"), KeyEvent.VK_S);
         addLogMessageItem.addActionListener((event) -> {
-            Logger.debug("Новая строка");
+            Logger.debug(Localisation.getString("message.log"));
         });
-        return addLogMessageItem;
+        testMenu.add(addLogMessageItem);
+        return testMenu;
     }
-
-    public void addJMenu(JMenu menu){
-        this.menuBar.add(menu);
-    }
-    public JMenuBar getJMenuBar(){return  menuBar;}
 }
