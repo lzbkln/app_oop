@@ -4,8 +4,8 @@ public class Robot{
     private double positionX = 100;
     private double positionY = 100;
 
-    public static final double maxVelocity = 0.07;
-    public static final double maxAngularVelocity = 0.007;
+    public static final double maxVelocity = 0.05;
+    public static final double maxAngularVelocity = 0.001;
 
     private volatile double robotDirection = 0;
 
