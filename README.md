@@ -6,5 +6,5 @@ The robot moves towards the target you specify
 ***
 ### Scheduled tasks:
 1. Switching to mvvm
-2. Localize the app and prevent the robot from going beyond
+2. Localize the app, prevent the robot from going beyond, add exit button
 3. Genetic algorithm implementation
