@@ -1,9 +1,9 @@
-package org.dl.app.gui;
+package gui;
 
-import org.dl.app.Model.GameModel;
-import org.dl.app.View.GameView;
-import org.dl.app.View.MainDrawer;
-import org.dl.app.ViewModel.ViewModel;
+import Model.GameModel;
+import View.GameView;
+import View.MainDrawer;
+import ViewModel.ViewModel;
 
 import java.awt.Frame;
 

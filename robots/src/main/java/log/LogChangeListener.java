@@ -1,4 +1,4 @@
-package org.dl.app.log;
+package log;
 
 public interface LogChangeListener
 {

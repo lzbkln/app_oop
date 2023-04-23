@@ -1,4 +1,4 @@
-package org.dl.app.Model;
+package Model;
 
 public class Target{
     private volatile int x;

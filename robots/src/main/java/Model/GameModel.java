@@ -1,12 +1,14 @@
-package org.dl.app.Model;
+package Model;
+
+
 import java.awt.*;
 
 public class GameModel {
 
-    Math models;
+    AllModels models;
 
     public GameModel(){
-        this.models = new Math();
+        this.models = new AllModels();
     }
 
     public void update(){
@@ -17,5 +19,5 @@ public class GameModel {
         models.setTargetPosition(p);
     }
 
-    public Math getmodel(){return models;}
+    public AllModels getmodel(){return models;}
 }

@@ -1,6 +1,6 @@
-package org.dl.app.View;
+package View;
 
-import org.dl.app.Model.Math;
+import Model.AllModels;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,10 +8,9 @@ import java.awt.*;
 public class GameView extends JPanel {
     RobotView robotView;
     TargetView targetView;
-    //через что-то, интерфейс entityCopied
-    private final Math model;
+    private final AllModels model;
 
-    public GameView(Math model){
+    public GameView(AllModels model){
         this.model = model;
         robotView = new RobotView();
         targetView = new TargetView();

@@ -1,4 +1,4 @@
-package org.dl.app.View;
+package View;
 
 import java.awt.*;
 

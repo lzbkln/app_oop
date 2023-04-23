@@ -1,14 +1,16 @@
-package org.dl.app.ViewModel;
+package ViewModel;
 
 
-import org.dl.app.Model.GameModel;
-import org.dl.app.View.GameView;
+import Model.GameModel;
+import View.GameView;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class ViewModel {
+    //собираем всё вместе
+
     private GameModel gameModel;
     private GameView gameView;
     private final Timer m_timer = initTimer();

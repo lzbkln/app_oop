@@ -1,12 +1,12 @@
-package org.dl.app.View;
+package View;
 
-import org.dl.app.Model.Target;
+import Model.Target;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 
-import static org.dl.app.View.DrawFigure.drawOval;
-import static org.dl.app.View.DrawFigure.fillOval;
+import static View.DrawFigure.drawOval;
+import static View.DrawFigure.fillOval;
 
 public class TargetView {
     protected void drawTarget(Graphics2D g, Target target)
