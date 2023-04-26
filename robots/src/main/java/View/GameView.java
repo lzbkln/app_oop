@@ -1,18 +1,19 @@
 package View;
 
+import GeneticAlgorithm.Parasite;
 import Model.AllModels;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class GameView extends JPanel {
-    RobotView robotView;
+    ParasiteView robotView;
     TargetView targetView;
     private final AllModels model;
 
     public GameView(AllModels model){
         this.model = model;
-        robotView = new RobotView();
+        robotView = new ParasiteView();
         targetView = new TargetView();
     }
 

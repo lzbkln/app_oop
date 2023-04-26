@@ -1,15 +1,17 @@
 package Model;
 
+import GeneticAlgorithm.Parasite;
+
 import java.awt.*;
 
 public class AllModels {
 
-    private Robot robot;
+    private Parasite robot;
     private Target target;
     private Dimension dimension;
 
     public AllModels() {
-        this.robot = new Robot();
+        this.robot = new Parasite();
         this.target = new Target();
     }
 

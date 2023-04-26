@@ -5,10 +5,12 @@ import Model.GameModel;
 import View.GameView;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class ViewModel {
+public class ViewModel implements PropertyChangeListener {
     //собираем всё вместе
 
     private GameModel gameModel;
@@ -47,4 +49,9 @@ public class ViewModel {
 
     }
     public GameView getGameView(){return gameView;}
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+
+    }
 }
