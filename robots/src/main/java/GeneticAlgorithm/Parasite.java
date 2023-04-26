@@ -2,6 +2,7 @@ package GeneticAlgorithm;
 
 import Model.Robot;
 
+import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -23,6 +24,7 @@ public class Parasite extends Robot {
             ttl--;
             if (ttl == 0){
                 isDead = true;
+                propChangeDispatcher.firePropertyChange("DIE", false, true);
             }
             //timer.cancel(); //Terminate the timer thread
         }
@@ -32,6 +34,17 @@ public class Parasite extends Robot {
     {
         propChangeDispatcher.firePropertyChange();
     }*/
+
+    /*public void toDie(String text)
+    {
+        propChangeDispatcher.firePropertyChange(PROPERTY_NAME, oldValue, text);
+
+    }
+*/
+    public void addTextChangeListener(PropertyChangeListener listener)
+    {
+        propChangeDispatcher.addPropertyChangeListener(listener);
+    }
 
     public boolean isAlive(){return !isDead;}
 

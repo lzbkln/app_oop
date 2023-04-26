@@ -8,6 +8,7 @@ import java.awt.*;
 
 public class GameView extends JPanel {
     ParasiteView robotView;
+    boolean isDead = false;
     TargetView targetView;
     private final AllModels model;
 
@@ -16,6 +17,7 @@ public class GameView extends JPanel {
         robotView = new ParasiteView();
         targetView = new TargetView();
     }
+    public void toKill(){isDead = true;}
 
     public void update(){
         EventQueue.invokeLater(this::repaint);
@@ -25,7 +27,10 @@ public class GameView extends JPanel {
     {
         super.paint(g);
         Graphics2D g2d = (Graphics2D)g;
-        robotView.drawRobot(g2d, model.getRobot());
+        if (!isDead){
+            robotView.drawRobot(g2d, model.getRobot());
+        }
+
         targetView.drawTarget(g2d, model.getTarget());
     }
 }

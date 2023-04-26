@@ -7,17 +7,24 @@ public class GameModel {
 
     AllModels models;
 
-    public GameModel(){
+    public GameModel() {
         this.models = new AllModels();
     }
 
-    public void update(){
+    public void update() {
         models.onModelUpdateEvent();
     }
+
     //public void getEntity();
-    public void change(Point p){
+    public void change(Point p) {
         models.setTargetPosition(p);
     }
 
-    public AllModels getmodel(){return models;}
+    public AllModels getmodel() {
+        return models;
+    }
+
+    public Robot getRobot() {
+        return models.getRobot();
+    }
 }

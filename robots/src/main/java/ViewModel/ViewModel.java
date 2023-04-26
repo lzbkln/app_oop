@@ -1,7 +1,9 @@
 package ViewModel;
 
 
+import GeneticAlgorithm.Parasite;
 import Model.GameModel;
+import Model.Robot;
 import View.GameView;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -14,6 +16,8 @@ public class ViewModel implements PropertyChangeListener {
     //собираем всё вместе
 
     private GameModel gameModel;
+
+    private Parasite parasite;
     private GameView gameView;
     private final Timer m_timer = initTimer();
 
@@ -26,6 +30,8 @@ public class ViewModel implements PropertyChangeListener {
 
         this.gameModel = gameModel;
         this.gameView = gameView;
+        this.parasite = (Parasite)gameModel.getRobot();
+        parasite.addTextChangeListener(this);
         m_timer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -52,6 +58,8 @@ public class ViewModel implements PropertyChangeListener {
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-
+        if (!parasite.isAlive()){
+            gameView.toKill();
+        }
     }
 }
