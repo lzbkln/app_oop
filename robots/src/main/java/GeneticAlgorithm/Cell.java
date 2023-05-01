@@ -76,7 +76,13 @@ public class Cell implements Positioned {
         /*if (isDead) {
             parasite.toStarveAgain();
         }*/
+    }
 
+    public void toRecover() {
+        timer.cancel();
+        timer = new Timer();
+        isSeek = false;
+        toLiveALife(1000);
     }
 
     public boolean isDead() {

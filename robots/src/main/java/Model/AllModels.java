@@ -105,6 +105,8 @@ public class AllModels {
             //System.out.println("NO");
             if (robot.condition.equals(Condition.TO_PARASIRIZE)){
                 System.out.println("stop parasitizing");
+                robot.toStarveAgain();
+                cell.toRecover();
 
             }
             robot.condition = Condition.TO_MOVE;
