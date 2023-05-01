@@ -1,5 +1,7 @@
 package GeneticAlgorithm;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -9,7 +11,7 @@ public class Cell implements Positioned{
     private volatile double y;
     private boolean isDead = false;
 
-    private int ttl = 15;//потом сделать рандом
+    private int ttl = 20;//потом сделать рандом
 
     Timer timer;
 
@@ -53,4 +55,5 @@ public class Cell implements Positioned{
             //timer.cancel(); //Terminate the timer thread
         }
     }
+    public boolean isDead(){return isDead;}
 }

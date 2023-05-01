@@ -8,7 +8,8 @@ import java.awt.*;
 
 public class GameView extends JPanel {
     ParasiteView robotView;
-    boolean isDead = false;
+    boolean robotIsDead = false;
+    boolean cellIsDead = false;
     TargetView targetView;
 
     CellView cellView;
@@ -20,7 +21,8 @@ public class GameView extends JPanel {
         targetView = new TargetView();
         cellView = new CellView();
     }
-    public void toKill(){isDead = true;}
+    public void toKillParasite(){robotIsDead = true;}
+    public void toKillCell(){cellIsDead = true;}
 
     public void update(){
         EventQueue.invokeLater(this::repaint);
@@ -31,8 +33,11 @@ public class GameView extends JPanel {
         super.paint(g);
         Graphics2D g2d = (Graphics2D)g;
         targetView.drawTarget(g2d, model.getTarget());
-        cellView.drawCell(g2d, model.getCell());
-        if (!isDead){
+        //cellView.drawCell(g2d, model.getCell());
+        if (!cellIsDead){
+            cellView.drawCell(g2d, model.getCell());
+        }
+        if (!robotIsDead){
             robotView.drawRobot(g2d, model.getRobot());
         }
 

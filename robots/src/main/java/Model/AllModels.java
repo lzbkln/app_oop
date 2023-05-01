@@ -3,15 +3,13 @@ package Model;
 import GeneticAlgorithm.Cell;
 import GeneticAlgorithm.Condition;
 import GeneticAlgorithm.Parasite;
+import GeneticAlgorithm.Positioned;
 
 import java.awt.*;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 public class AllModels {
-
-    private boolean isMoved = false;
-
     private double prevDistance = 0;
     private Parasite robot;
     private Target target;
@@ -43,7 +41,7 @@ public class AllModels {
 
     public void addTextChangeListener(PropertyChangeListener listener)
     {
-        propChangeDispatcher.addPropertyChangeListener("model", listener);
+        propChangeDispatcher.addPropertyChangeListener( listener);
     }
 
 
@@ -78,21 +76,28 @@ public class AllModels {
         }
         moveRobot(velocity, angularVelocity, 10);
 
-        System.out.println(prevDistance + " " + distance);
-        if (prevDistance == distance){
-            System.out.println("EQ");
-            System.out.println("EQ");
+        //System.out.println(prevDistance + " " + distance);
+        if (closeTo(target)){
             System.out.println("EQ");
             if (robot.condition.equals(Condition.TO_MOVE)){
-                //isMoved = false;
-                if (checkPosition(cell)){
+                System.out.println("TO_MOVE");
+                System.out.println(cell.getPositionX()+ " " + robot.getPositionX() + " " + cell.getPositionY()+ " " + robot.getPositionY());
+                if (closeTo(cell)){
+                    System.out.println("CELL");
                     System.out.println("start parasitizing");
                     robot.condition = Condition.TO_PARASIRIZE;
                     robot.toParasitize(cell);
                 }
             }
+            else {
+                System.out.println("TO_PARASITIZE");
+                if (cell.isDead()){
+                    propChangeDispatcher.firePropertyChange("cell", false, true);
+                }
+            }
         }
         else {
+            //System.out.println("NO");
             if (robot.condition.equals(Condition.TO_PARASIRIZE)){
                 System.out.println("stop parasitizing");
 
@@ -102,8 +107,12 @@ public class AllModels {
         prevDistance = distance;
     }
 
-    private boolean checkPosition(Cell cell){
-        if (Math.abs(cell.getPositionX() - robot.getPositionX()) < 0.5 && Math.abs(cell.getPositionY() - robot.getPositionY()) <0.5 ){
+    private boolean closeTo(Positioned positioned){
+        double dis = 1.1;
+        if (positioned instanceof Cell){
+            dis = 14;
+        }
+        if (Math.abs(positioned.getPositionX() - robot.getPositionX()) < dis && Math.abs(positioned.getPositionY() - robot.getPositionY()) < dis ){
             return true;
         }
         return false;
@@ -151,7 +160,4 @@ public class AllModels {
         return angle;
     }
 
-    public boolean isMoved() {
-        return isMoved;
-    }
 }

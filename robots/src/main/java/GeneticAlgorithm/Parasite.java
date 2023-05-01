@@ -9,7 +9,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Parasite extends Robot {
-    private int ttl = 20;
+    private int ttl = 10;
 
     public Condition condition;
     Timer timer;
@@ -25,6 +25,7 @@ public class Parasite extends Robot {
     class CloserToDeath extends TimerTask {
         public void run() {
             ttl--;
+            System.out.println(ttl + "left");
             if (ttl == 0){
                 isDead = true;
                 propChangeDispatcher.firePropertyChange("parasite", false, true);
@@ -43,8 +44,14 @@ public class Parasite extends Robot {
 
     public void toParasitize(Cell cell){
         int hp = cell.toFeed(ttl);
+        //try {Thread.sleep(hp*1000);} catch (InterruptedException e) {}
+        //Thread.sleep(hp*1000);
         timer.cancel();
-        timer.scheduleAtFixedRate(new toWait(), 0, hp);
+        System.out.println("parasite ttl - " + ttl);
+        timer = new Timer();
+        try {Thread.sleep(hp*1000);} catch (InterruptedException e) {}
+        //timer.scheduleAtFixedRate(new toWait(), 0, hp);
+        //timer = new Timer();
         toLiveALife();
     }
 
