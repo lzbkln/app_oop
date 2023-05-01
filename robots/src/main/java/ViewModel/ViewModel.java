@@ -5,6 +5,10 @@ import GeneticAlgorithm.Parasite;
 import Model.GameModel;
 import Model.Robot;
 import View.GameView;
+
+import javax.swing.event.AncestorListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
@@ -31,7 +35,10 @@ public class ViewModel implements PropertyChangeListener {
         this.gameModel = gameModel;
         this.gameView = gameView;
         this.parasite = (Parasite)gameModel.getRobot();
+
         parasite.addTextChangeListener(this);
+        gameModel.getmodel().addTextChangeListener(this);
+
         m_timer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -53,6 +60,18 @@ public class ViewModel implements PropertyChangeListener {
             }
         });
 
+        /*gameView.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentHidden(ComponentEvent event){
+                System.out.println("hidden");
+            }
+
+        });*/
+
+        /*gameView.addAncestorListener(AncestorListener listener);
+
+        gameView.addVetoableChangeListener();*/
+
     }
     public GameView getGameView(){return gameView;}
 
@@ -61,5 +80,15 @@ public class ViewModel implements PropertyChangeListener {
         if (!parasite.isAlive()){
             gameView.toKill();
         }
+        /*if (evt.getPropertyName().equals("parasite")){
+            if (!parasite.isAlive()){
+                gameView.toKill();
+            }
+        }*/
+        /*else {
+            if (!gameModel.getmodel().isMoved()){
+
+            }
+        }*/
     }
 }

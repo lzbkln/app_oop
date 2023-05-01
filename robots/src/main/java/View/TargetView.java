@@ -14,8 +14,8 @@ public class TargetView {
         AffineTransform t = AffineTransform.getRotateInstance(0, 0, 0);
         g.setTransform(t);
         g.setColor(Color.GREEN);
-        fillOval(g, target.getPositionX(), target.getPositionY(), 5, 5);
+        fillOval(g, (int)target.getPositionX(), (int)target.getPositionY(), 5, 5);
         g.setColor(Color.BLACK);
-        drawOval(g, target.getPositionX(), target.getPositionY(), 5, 5);
+        drawOval(g, (int)target.getPositionX(), (int)target.getPositionY(), 5, 5);
     }
 }

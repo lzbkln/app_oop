@@ -1,6 +1,8 @@
 package Model;
 
-public class Robot{
+import GeneticAlgorithm.Positioned;
+
+public class Robot implements Positioned {
     private double positionX = 100;
     private double positionY = 100;
 

@@ -1,15 +1,17 @@
 package Model;
 
-public class Target{
-    private volatile int x;
-    private volatile int y;
+import GeneticAlgorithm.Positioned;
+
+public class Target implements Positioned {
+    private volatile double x;
+    private volatile double y;
 
     public Target() {
         this.x = 150;
         this.y = 100;
     }
 
-    public Target(int x, int y) {
+    public Target(double x, double y) {
         this.x = x;
         this.y = y;
     }
@@ -21,11 +23,11 @@ public class Target{
         this.y = y;
     }
 
-    public int getPositionX() {
+    public double getPositionX() {
         return x;
     }
 
-    public int getPositionY() {
+    public double getPositionY() {
         return y;
     }
 
