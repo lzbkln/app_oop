@@ -43,15 +43,18 @@ public class Parasite extends Robot {
     }
 
     public void toParasitize(Cell cell){
-        int hp = cell.toFeed(ttl);
-        //try {Thread.sleep(hp*1000);} catch (InterruptedException e) {}
-        //Thread.sleep(hp*1000);
+        /*int hp = cell.toFeed(ttl);
         timer.cancel();
         System.out.println("parasite ttl - " + ttl);
         timer = new Timer();
         try {Thread.sleep(hp*1000);} catch (InterruptedException e) {}
-        //timer.scheduleAtFixedRate(new toWait(), 0, hp);
-        //timer = new Timer();
+        toLiveALife();*/
+        cell.toSlowlyDieCauseParasite(this);
+        timer.cancel();
+    }
+
+    public void toStarveAgain(){
+        timer = new Timer();
         toLiveALife();
     }
 

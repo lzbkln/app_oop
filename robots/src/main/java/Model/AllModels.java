@@ -16,7 +16,7 @@ public class AllModels {
     private Cell cell;
     private Dimension dimension;
 
-    private PropertyChangeSupport propChangeDispatcher = new PropertyChangeSupport(this);
+    //private PropertyChangeSupport propChangeDispatcher = new PropertyChangeSupport(this);
 
     public AllModels() {
         this.robot = new Parasite();
@@ -39,10 +39,10 @@ public class AllModels {
 
     public Cell  getCell(){return cell;}
 
-    public void addTextChangeListener(PropertyChangeListener listener)
+    /*public void addTextChangeListener(PropertyChangeListener listener)
     {
         propChangeDispatcher.addPropertyChangeListener( listener);
-    }
+    }*/
 
 
     private static double distance(double x1, double y1, double x2, double y2) {
@@ -77,6 +77,10 @@ public class AllModels {
         moveRobot(velocity, angularVelocity, 10);
 
         //System.out.println(prevDistance + " " + distance);
+        /*if (cell.isDead()){
+            propChangeDispatcher.firePropertyChange("cell", false, true);
+            System.out.println("KILLLL");
+        }*/
         if (closeTo(target)){
             System.out.println("EQ");
             if (robot.condition.equals(Condition.TO_MOVE)){
@@ -92,7 +96,8 @@ public class AllModels {
             else {
                 System.out.println("TO_PARASITIZE");
                 if (cell.isDead()){
-                    propChangeDispatcher.firePropertyChange("cell", false, true);
+                    robot.toStarveAgain();
+                    robot.condition = Condition.TO_MOVE;
                 }
             }
         }

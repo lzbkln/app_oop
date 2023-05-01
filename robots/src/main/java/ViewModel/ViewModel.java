@@ -1,6 +1,7 @@
 package ViewModel;
 
 
+import GeneticAlgorithm.Cell;
 import GeneticAlgorithm.Parasite;
 import Model.GameModel;
 import Model.Robot;
@@ -21,6 +22,7 @@ public class ViewModel implements PropertyChangeListener {
 
     private GameModel gameModel;
 
+    private Cell cell;
     private Parasite parasite;
     private GameView gameView;
     private final Timer m_timer = initTimer();
@@ -35,9 +37,10 @@ public class ViewModel implements PropertyChangeListener {
         this.gameModel = gameModel;
         this.gameView = gameView;
         this.parasite = (Parasite)gameModel.getRobot();
+        this.cell = gameModel.getmodel().getCell();
 
         parasite.addTextChangeListener(this);
-        gameModel.getmodel().addTextChangeListener(this);
+       cell.addTextChangeListener(this);
 
         m_timer.schedule(new TimerTask() {
             @Override
