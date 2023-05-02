@@ -1,2 +1,4 @@
-package Model;public class Entity {
+package Model;
+public class Entity {
+
 }
