@@ -16,10 +16,6 @@ public class Target{
         this.y = y;
     }
 
-   /* public void changeTarget(Point p) {
-        setPositionX(p.x);
-        setPositionY(p.y);
-    }*/
     public void setPositionX(int x) {
         this.x = x;
     }
@@ -36,8 +32,4 @@ public class Target{
         return y;
     }
 
-    /*@Override
-    public void update() {
-
-    }*/
 }

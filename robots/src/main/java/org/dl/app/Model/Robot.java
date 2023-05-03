@@ -1,6 +1,6 @@
 package org.dl.app.Model;
 
-public class Robot{
+public class Robot implements Entity{
     private double positionX = 100;
     private double positionY = 100;
     private Target target;
@@ -10,8 +10,8 @@ public class Robot{
     }
 
     private double velocity;
-    public static final double maxVelocity = 0.07;
-    public static final double maxAngularVelocity = 0.007;
+    public static final double maxVelocity = 0.05;
+    public static final double maxAngularVelocity = 0.001;
 
     private double duration = 10.0;
 
@@ -47,7 +47,6 @@ public class Robot{
         if (distance < 0.5){
             return;
         }
-        double velocity = Robot.maxVelocity;
         double angleToTarget = Math.angleTo(positionX, positionY,
                 target.getPositionX(), target.getPositionY());
         double angularVelocity = 0;
@@ -64,11 +63,11 @@ public class Robot{
             else
                 angularVelocity = -Robot.maxAngularVelocity;
         }
-        move(velocity, angularVelocity);
+        move(angularVelocity);
     }
 
-    private void move(double velocity, double angularVelocity){
-        velocity = Math.applyLimits(velocity, 0, maxVelocity);
+    private void move(double angularVelocity){
+        velocity = Math.applyLimits(maxVelocity, 0, maxVelocity);
         angularVelocity = Math.applyLimits(angularVelocity, -maxAngularVelocity, maxAngularVelocity);
         double newX = positionX + velocity / angularVelocity *
                 (java.lang.Math.sin(robotDirection  + angularVelocity * duration) -
@@ -94,8 +93,4 @@ public class Robot{
         robotDirection = newDirection;
     }
 
-    /*@Override
-    public void update() {
-
-    }*/
 }
