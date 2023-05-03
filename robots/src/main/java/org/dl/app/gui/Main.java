@@ -1,5 +1,6 @@
 package org.dl.app.gui;
 
+import org.dl.app.Model.EntityStateProvider;
 import org.dl.app.Model.GameModel;
 import org.dl.app.View.GameView;
 import org.dl.app.View.MainDrawer;
@@ -13,8 +14,9 @@ import javax.swing.UIManager;
 public class Main {
     public static void main(String[] args) {
       GameModel gameModel = new GameModel();
-      GameView gameView = new GameView(gameModel.getGameState());
-      ViewModel viewModel = new ViewModel(gameModel, gameView);
+      EntityStateProvider provider = new EntityStateProvider(gameModel.getGameState());
+      GameView gameView = new GameView(provider);
+      ViewModel viewModel = new ViewModel(gameModel, gameView, provider);
 
       try {
         UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");

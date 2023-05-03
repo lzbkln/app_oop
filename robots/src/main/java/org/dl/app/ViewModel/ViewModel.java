@@ -1,6 +1,7 @@
 package org.dl.app.ViewModel;
 
 
+import org.dl.app.Model.EntityStateProvider;
 import org.dl.app.Model.GameModel;
 import org.dl.app.View.GameView;
 import java.awt.event.MouseAdapter;
@@ -11,6 +12,8 @@ import java.util.TimerTask;
 public class ViewModel {
     private GameModel gameModel;
     private GameView gameView;
+
+    private EntityStateProvider provider;
     private final Timer m_timer = initTimer();
 
     private static java.util.Timer initTimer() {
@@ -18,10 +21,11 @@ public class ViewModel {
         return timer;
     }
 
-    public ViewModel(GameModel gameModel, GameView gameView) {
+    public ViewModel(GameModel gameModel, GameView gameView, EntityStateProvider provider) {
 
         this.gameModel = gameModel;
         this.gameView = gameView;
+        this.provider = provider;
         m_timer.schedule(new TimerTask() {
             @Override
             public void run() {

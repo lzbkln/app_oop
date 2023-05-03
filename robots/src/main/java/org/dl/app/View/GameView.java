@@ -1,5 +1,6 @@
 package org.dl.app.View;
 
+import org.dl.app.Model.EntityStateProvider;
 import org.dl.app.Model.GameState;
 import org.dl.app.Model.Math;
 
@@ -9,12 +10,10 @@ import java.awt.*;
 public class GameView extends JPanel {
     RobotView robotView;
     TargetView targetView;
-    //через что-то, интерфейс entityCopied
-    //private final Math model;
-    private final GameState gameState;
+    private final EntityStateProvider entityState;
 
-    public GameView(GameState gameState){
-        this.gameState = gameState;
+    public GameView(EntityStateProvider provider){
+        this.entityState = provider;
         robotView = new RobotView();
         targetView = new TargetView();
     }
@@ -27,7 +26,7 @@ public class GameView extends JPanel {
     {
         super.paint(g);
         Graphics2D g2d = (Graphics2D)g;
-        robotView.drawRobot(g2d, gameState.getRobot());
-        targetView.drawTarget(g2d, gameState.getTarget());
+        robotView.drawRobot(g2d, entityState.getCurrentRobot());
+        targetView.drawTarget(g2d, entityState.getCurrentTarget());
     }
 }

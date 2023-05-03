@@ -2,7 +2,7 @@ package org.dl.app.Model;
 
 import java.awt.*;
 
-public class Target{
+public class Target implements Entity{
     private volatile int x;
     private volatile int y;
 
@@ -32,4 +32,8 @@ public class Target{
         return y;
     }
 
+    @Override
+    public void update() {
+
+    }
 }

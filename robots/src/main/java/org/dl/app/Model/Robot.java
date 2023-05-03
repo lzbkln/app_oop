@@ -25,22 +25,11 @@ public class Robot implements Entity{
         return positionY;
     }
 
-    /*public void setPositionX(double positionX) {
-        this.positionX = positionX;
-    }*/
-
-   /* public void setPositionY(double positionY) {
-        this.positionY = positionY;
-    }*/
-
-    public void setDirection(double robotDirection) {
-        this.robotDirection = robotDirection;
-    }
-
     public double getDirection() {
         return robotDirection;
     }
 
+    @Override
     public void update() {//moveRobot
         double distance = Math.distance(target.getPositionX(), target.getPositionY(),
                 positionX, positionY);
