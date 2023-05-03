@@ -13,7 +13,7 @@ import javax.swing.UIManager;
 public class Main {
     public static void main(String[] args) {
       GameModel gameModel = new GameModel();
-      GameView gameView = new GameView(gameModel.getmodel());
+      GameView gameView = new GameView(gameModel.getGameState());
       ViewModel viewModel = new ViewModel(gameModel, gameView);
 
       try {

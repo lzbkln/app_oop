@@ -1,2 +1,4 @@
-package org.dl.app.Model;public class Entity {
+package org.dl.app.Model;
+public interface Entity {
+    void update();
 }

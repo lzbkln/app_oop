@@ -4,42 +4,42 @@ import java.awt.*;
 
 public class Math {
 
-    private Robot robot;
-    private Target target;
+    //private Robot robot;
+    //private Target target;
     private Dimension dimension;
 
-    public Math() {
+    /*public Math() {
         this.robot = new Robot();
         this.target = new Target();
-    }
+    }*/
 
-    public void setTargetPosition(Point p) {
+    /*public void changeTarget(Point p) {
         target.setPositionX(p.x);
         target.setPositionY(p.y);
-    }
+    }*/
 
-    public Robot getRobot() {
+    /*public Robot getRobot() {
         return robot;
     }
 
     public Target getTarget() {
         return target;
-    }
+    }*/
 
 
-    private static double distance(double x1, double y1, double x2, double y2) {
+    protected static double distance(double x1, double y1, double x2, double y2) {
         double diffX = x1 - x2;
         double diffY = y1 - y2;
         return java.lang.Math.sqrt(diffX * diffX + diffY * diffY);
     }
 
-    private static double angleTo(double fromX, double fromY, double toX, double toY) {
+    protected static double angleTo(double fromX, double fromY, double toX, double toY) {
         double diffX = toX - fromX;
         double diffY = toY - fromY;
         return asNormalizedRadians(java.lang.Math.atan2(diffY, diffX));
     }
 
-    protected void onModelUpdateEvent() {
+    /*protected void onModelUpdateEvent() {
         double distance = distance(target.getPositionX(), target.getPositionY(),
                 robot.getPositionX(), robot.getPositionY());
         if (distance < 0.5){
@@ -62,8 +62,8 @@ public class Math {
             else
                 angularVelocity = -Robot.maxAngularVelocity;
         }
-        robot.moveRobot(velocity, angularVelocity, 10.0);
-    }
+        robot.update(velocity, angularVelocity);
+    }*/
 
     public static double applyLimits(double value, double min, double max) {
         if (value < min)

@@ -1,5 +1,7 @@
 package org.dl.app.Model;
 
+import java.awt.*;
+
 public class Target{
     private volatile int x;
     private volatile int y;
@@ -13,6 +15,11 @@ public class Target{
         this.x = x;
         this.y = y;
     }
+
+   /* public void changeTarget(Point p) {
+        setPositionX(p.x);
+        setPositionY(p.y);
+    }*/
     public void setPositionX(int x) {
         this.x = x;
     }
