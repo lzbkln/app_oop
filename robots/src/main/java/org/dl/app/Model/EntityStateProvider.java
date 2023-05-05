@@ -1,10 +1,25 @@
 package org.dl.app.Model;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+
 public class EntityStateProvider implements GameStateProvider{
     private GameState gameState;
 
+    private PropertyChangeSupport propChangeDispatcher = new PropertyChangeSupport(this);
+
     public EntityStateProvider(GameState gameState){
         this.gameState = gameState;
+        this.getCurrentRobot().setProvider(this);
+    }
+
+    public void addTextChangeListener(PropertyChangeListener listener)
+    {
+        propChangeDispatcher.addPropertyChangeListener(listener);
+    }
+
+    public void changeRobotCondition(){
+        propChangeDispatcher.firePropertyChange("parasite", false, true);
     }
 
     @Override

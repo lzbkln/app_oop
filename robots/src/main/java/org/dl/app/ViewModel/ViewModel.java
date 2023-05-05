@@ -6,10 +6,12 @@ import org.dl.app.Model.GameModel;
 import org.dl.app.View.GameView;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class ViewModel {
+public class ViewModel implements PropertyChangeListener {
     private GameModel gameModel;
     private GameView gameView;
 
@@ -26,6 +28,7 @@ public class ViewModel {
         this.gameModel = gameModel;
         this.gameView = gameView;
         this.provider = provider;
+        this.provider.addTextChangeListener(this);
         m_timer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -49,4 +52,9 @@ public class ViewModel {
 
     }
     public GameView getGameView(){return gameView;}
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        gameView.toKillRobot();
+    }
 }

@@ -2,15 +2,16 @@ package org.dl.app.Model;
 
 import java.awt.*;
 import org.dl.app.Model.Math;
+import org.dl.app.TheGame.Parasite;
 
 public class GameState {
 
-    private Robot robot;
+    private Parasite robot;
     private Target target;
 
     public GameState() {
         this.target = new Target();
-        this.robot = new Robot(target);
+        this.robot = new Parasite(target);
 
     }
 

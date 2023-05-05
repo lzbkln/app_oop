@@ -10,6 +10,8 @@ import java.awt.*;
 public class GameView extends JPanel {
     RobotView robotView;
     TargetView targetView;
+
+    private boolean robotIsDead = false;
     private final EntityStateProvider entityState;
 
     public GameView(EntityStateProvider provider){
@@ -26,7 +28,14 @@ public class GameView extends JPanel {
     {
         super.paint(g);
         Graphics2D g2d = (Graphics2D)g;
-        robotView.drawRobot(g2d, entityState.getCurrentRobot());
+        if (!robotIsDead){
+            robotView.drawRobot(g2d, entityState.getCurrentRobot());
+        }
+
         targetView.drawTarget(g2d, entityState.getCurrentTarget());
+    }
+
+    public void toKillRobot() {
+        robotIsDead = true;
     }
 }

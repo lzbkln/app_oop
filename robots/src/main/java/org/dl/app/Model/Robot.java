@@ -5,6 +5,8 @@ public class Robot implements Entity{
     private double positionY = 100;
     private Target target;
 
+    protected EntityStateProvider provider;
+
     public Robot(Target target){
         this.target = target;
     }
@@ -80,6 +82,10 @@ public class Robot implements Entity{
         else if (positionY < 0) {newDirection = 8; positionY = 10;}
         else newDirection = Math.asNormalizedRadians(robotDirection + angularVelocity * duration);
         robotDirection = newDirection;
+    }
+
+    public void setProvider(EntityStateProvider provider){
+        this.provider = provider;
     }
 
 }
