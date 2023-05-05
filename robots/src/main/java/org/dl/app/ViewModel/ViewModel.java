@@ -55,6 +55,11 @@ public class ViewModel implements PropertyChangeListener {
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        gameView.toKillRobot();
+        if (evt.getPropertyName().equals("parasite")){
+            gameView.toKillRobot();
+        }
+        else {
+            gameView.toKillCell();
+        }
     }
 }

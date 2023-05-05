@@ -1,5 +1,7 @@
 package org.dl.app.Model;
 
+import org.dl.app.TheGame.Cell;
+
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
@@ -11,6 +13,7 @@ public class EntityStateProvider implements GameStateProvider{
     public EntityStateProvider(GameState gameState){
         this.gameState = gameState;
         this.getCurrentRobot().setProvider(this);
+        this.getCurrentCell().setProvoder(this);
     }
 
     public void addTextChangeListener(PropertyChangeListener listener)
@@ -22,6 +25,10 @@ public class EntityStateProvider implements GameStateProvider{
         propChangeDispatcher.firePropertyChange("parasite", false, true);
     }
 
+    public void changeCellCondition(){
+        propChangeDispatcher.firePropertyChange("cell", false, true);
+    }
+
     @Override
     public Target getCurrentTarget() {
         return gameState.getTarget();
@@ -30,5 +37,10 @@ public class EntityStateProvider implements GameStateProvider{
     @Override
     public Robot getCurrentRobot() {
         return gameState.getRobot();
+    }
+
+    @Override
+    public Cell getCurrentCell() {
+        return gameState.getCell();
     }
 }

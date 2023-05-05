@@ -1,11 +1,15 @@
 package org.dl.app.TheGame;
 
+import org.dl.app.Model.EntityStateProvider;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class Cell implements Positioned {
 
     private volatile double x;
+
+    private EntityStateProvider provider;
 
     private boolean isSeek = false;
 
@@ -18,8 +22,8 @@ public class Cell implements Positioned {
     Timer timer;
 
     public Cell() {
-        this.x = 200;
-        this.y = 200;
+        this.x = 150;
+        this.y = 150;
         timer = new Timer();
         toLiveALife(1000);
         //потом сделать рандом
@@ -33,17 +37,12 @@ public class Cell implements Positioned {
         return y;
     }
 
-    public int toFeed(int timeToLoose) {
-        return toDie(timeToLoose);
-    }
-
-    private int toDie(int timeToLoose) {
-        ttl = ttl / 2;
-        return ttl;
-    }
-
     private void toLiveALife(int period) {
         timer.scheduleAtFixedRate(new CloserToDeath(), 0, period);
+    }
+
+    public void setProvoder(EntityStateProvider provider) {
+        this.provider = provider;
     }
 
     class CloserToDeath extends TimerTask {
@@ -51,11 +50,13 @@ public class Cell implements Positioned {
             ttl--;
             if (ttl == 0) {
                 isDead = true;
+                if (provider != null){
+                    provider.changeCellCondition();
+                }
                 if (isSeek){parasite.toStarveAgain();}
                 timer.cancel();
             }
 
-            //timer.cancel(); //Terminate the timer thread
         }
     }
 
