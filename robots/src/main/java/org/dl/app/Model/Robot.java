@@ -1,9 +1,15 @@
 package org.dl.app.Model;
 
+import org.dl.app.TheGame.Interactions;
+
 public class Robot implements Entity{
     private double positionX = 100;
     private double positionY = 100;
-    private Target target;
+    protected Target target;
+
+    public double distance;
+
+    protected Interactions interactions;
 
     protected EntityStateProvider provider;
 
@@ -33,7 +39,7 @@ public class Robot implements Entity{
 
     @Override
     public void update() {//moveRobot
-        double distance = Math.distance(target.getPositionX(), target.getPositionY(),
+        distance = Math.distance(target.getPositionX(), target.getPositionY(),
                 positionX, positionY);
         if (distance < 0.5){
             return;
@@ -85,7 +91,11 @@ public class Robot implements Entity{
     }
 
     public void setProvider(EntityStateProvider provider){
+
         this.provider = provider;
+        this.interactions = provider.getInteractions();
     }
+
+
 
 }

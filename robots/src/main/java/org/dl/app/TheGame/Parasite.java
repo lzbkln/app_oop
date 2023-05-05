@@ -7,10 +7,13 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Parasite extends Robot {
-    private int ttl = 10;
+    private int ttl = 14;
+
+    public double prevDistance = 0;
 
     public Condition condition;
     Timer timer;
+
 
     private boolean isDead = false;
 
@@ -25,12 +28,15 @@ public class Parasite extends Robot {
         public void run() {
             ttl--;
             System.out.println(ttl + "left");
+            //if (ttl<0){timer.cancel();}
             if (ttl == 0){
                 isDead = true;
                 timer.cancel();
                 if (provider != null){
                     provider.changeRobotCondition();
                 }
+                if (timer != null){
+                    timer.cancel();}
             }
 
             //timer.cancel(); //Terminate the timer thread
@@ -39,8 +45,9 @@ public class Parasite extends Robot {
 
 
     public void toParasitize(Cell cell){
-        cell.toSlowlyDieCauseParasite(this);
         timer.cancel();
+        cell.toSlowlyDieCauseParasite(this);
+
     }
 
     public void toStarveAgain(){
@@ -53,6 +60,13 @@ public class Parasite extends Robot {
         timer.scheduleAtFixedRate(new CloserToDeath(), 0, 1000);
     }
 
-    public boolean isAlive(){return !isDead;}
+
+    public void update(){
+        super.update();
+        if (interactions != null){
+            interactions.toInteract(target, this);
+        }
+
+   }
 
 }

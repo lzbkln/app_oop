@@ -48,13 +48,14 @@ public class Cell implements Positioned {
     class CloserToDeath extends TimerTask {
         public void run() {
             ttl--;
+            System.out.println("cell -" + ttl);
             if (ttl == 0) {
                 isDead = true;
+                timer.cancel();
+                if (isSeek){parasite.toStarveAgain();}
                 if (provider != null){
                     provider.changeCellCondition();
                 }
-                if (isSeek){parasite.toStarveAgain();}
-                timer.cancel();
             }
 
         }
@@ -66,9 +67,6 @@ public class Cell implements Positioned {
         toLiveALife(500);
         parasite = _parasite;
         isSeek = true;
-        /*if (isDead) {
-            parasite.toStarveAgain();
-        }*/
     }
 
     public void toRecover() {

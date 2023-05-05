@@ -1,8 +1,8 @@
 package org.dl.app.Model;
 
-import java.awt.*;
+import org.dl.app.TheGame.Positioned;
 
-public class Target implements Entity{
+public class Target implements Entity, Positioned {
     private volatile int x;
     private volatile int y;
 
@@ -24,11 +24,11 @@ public class Target implements Entity{
         this.y = y;
     }
 
-    public int getPositionX() {
+    public double getPositionX() {
         return x;
     }
 
-    public int getPositionY() {
+    public double getPositionY() {
         return y;
     }
 
