@@ -5,6 +5,7 @@ import org.dl.app.TheGame.Interactions;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.Map;
 
 public class EntityStateProvider implements GameStateProvider{
     private GameState gameState;
@@ -16,7 +17,12 @@ public class EntityStateProvider implements GameStateProvider{
         this.gameState = gameState;
         this.interactions = new Interactions(this.getCurrentCell());
         this.getCurrentRobot().setProvider(this);
-        this.getCurrentCell().setProvoder(this);
+        for (Map.Entry<Integer, Cell> entry : this.getCurrentCell().entrySet()){
+            entry.getValue().setProvoder(this);
+
+
+        }
+        //this.getCurrentCell().setProvoder(this);
 
     }
 
@@ -29,8 +35,16 @@ public class EntityStateProvider implements GameStateProvider{
         propChangeDispatcher.firePropertyChange("parasite", false, true);
     }
 
-    public void changeCellCondition(){
-        propChangeDispatcher.firePropertyChange("cell", false, true);
+    public void changeCellCondition(Cell cell){
+        Map<Integer, Cell> map = this.getCurrentCell();
+        for (Integer i : map.keySet()){
+            if (map.get(i).equals(cell)){
+                propChangeDispatcher.firePropertyChange("cell", false, i);
+                break;
+            }
+        }
+
+        //propChangeDispatcher.firePropertyChange("cell", false, );
     }
 
     @Override
@@ -44,7 +58,7 @@ public class EntityStateProvider implements GameStateProvider{
     }
 
     @Override
-    public Cell getCurrentCell() {
+    public Map<Integer, Cell> getCurrentCell() {
         return gameState.getCell();
     }
     public Interactions getInteractions(){return interactions;}

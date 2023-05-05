@@ -1,29 +1,36 @@
 package org.dl.app.View;
 
 import org.dl.app.Model.EntityStateProvider;
-import org.dl.app.Model.GameState;
-import org.dl.app.Model.Math;
-import org.dl.app.TheGame.Cell;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class GameView extends JPanel {
     RobotView robotView;
     TargetView targetView;
 
-    CellView cellView;
+    //CellView cellView;
+
+    Map<Integer, CellView> cellView = new HashMap<>();
 
     private boolean robotIsDead = false;
 
-    private boolean cellIsDead = false;
+    //private boolean cellIsDead = false;
+
+    private boolean[] cellIsDead = new boolean[]{false, false, false, false, false};
     private final EntityStateProvider entityState;
 
     public GameView(EntityStateProvider provider){
         this.entityState = provider;
         robotView = new RobotView();
         targetView = new TargetView();
-        this.cellView = new CellView();
+        //this.cellView = new CellView();
+        //this.cellView = new HashMap<>()
+        for (int i = 0; i < 5; i++){
+            cellView.put(i+1, new CellView());
+        }
     }
 
     public void update(){
@@ -35,8 +42,14 @@ public class GameView extends JPanel {
         super.paint(g);
         Graphics2D g2d = (Graphics2D)g;
 
-        if (!cellIsDead){
+        /*if (!cellIsDead){
             cellView.drawCell(g2d, entityState.getCurrentCell());
+        }*/
+
+        for (int i = 0; i < 5; i++){
+            if (!cellIsDead[i]){
+                cellView.get(i+1).drawCell(g2d, entityState.getCurrentCell().get(i+1));
+            }
         }
         if (!robotIsDead){
             robotView.drawRobot(g2d, entityState.getCurrentRobot());
@@ -49,7 +62,8 @@ public class GameView extends JPanel {
         robotIsDead = true;
     }
 
-    public void toKillCell() {
-        cellIsDead = true;
+    public void toKillCell(int i) {
+        cellIsDead[i-1] = true;
+
     }
 }

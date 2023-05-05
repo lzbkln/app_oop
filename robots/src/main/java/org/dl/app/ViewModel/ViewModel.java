@@ -3,6 +3,7 @@ package org.dl.app.ViewModel;
 
 import org.dl.app.Model.EntityStateProvider;
 import org.dl.app.Model.GameModel;
+import org.dl.app.TheGame.Interactions;
 import org.dl.app.View.GameView;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -59,7 +60,8 @@ public class ViewModel implements PropertyChangeListener {
             gameView.toKillRobot();
         }
         else {
-            gameView.toKillCell();
+            Integer i = (Integer) evt.getNewValue();
+            gameView.toKillCell(i);
         }
     }
 }

@@ -2,6 +2,7 @@ package org.dl.app.TheGame;
 
 import org.dl.app.Model.EntityStateProvider;
 
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -17,13 +18,17 @@ public class Cell implements Positioned {
     private volatile double y;
     private boolean isDead = false;
 
-    private int ttl = 20;//потом сделать рандом
+    Random random;
+
+    private int ttl;
 
     Timer timer;
 
     public Cell() {
-        this.x = 150;
-        this.y = 150;
+        random = new Random();
+        ttl = random.nextInt(15, 90);
+        this.x = random.nextInt(50, 300);
+        this.y = random.nextInt(50, 300);
         timer = new Timer();
         toLiveALife(1000);
         //потом сделать рандом
@@ -54,7 +59,7 @@ public class Cell implements Positioned {
                 timer.cancel();
                 if (isSeek){parasite.toStarveAgain();}
                 if (provider != null){
-                    provider.changeCellCondition();
+                    provider.changeCellCondition(Cell.this);
                 }
             }
 
@@ -71,8 +76,8 @@ public class Cell implements Positioned {
 
     public void toRecover() {
         timer.cancel();
-        timer = new Timer();
         isSeek = false;
+        timer = new Timer();
         toLiveALife(1000);
     }
 

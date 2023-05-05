@@ -2,33 +2,39 @@ package org.dl.app.TheGame;
 
 import org.dl.app.Model.Target;
 
+import java.util.Map;
+
 public class Interactions {
 
-    private Cell cell;
+    private Map<Integer, Cell> cellList;
 
-    public Interactions(Cell cell){
-        this.cell = cell;
+    public Interactions(Map<Integer, Cell> cellList){
+        this.cellList = cellList;
     }
 
     public void toInteract(Target target, Parasite robot){
 
+        Cell current = new Cell();
         if (closeTo(target, robot)){
             //System.out.println("EQ");
             if (robot.condition.equals(Condition.TO_MOVE)){
                 //System.out.println("TO_MOVE");
                 //System.out.println(cell.getPositionX()+ " " + robot.getPositionX() + " " + cell.getPositionY()+ " " + robot.getPositionY());
-                if (closeTo(cell, robot) && !cell.isDead()){
-
-                    System.out.println("CELL");
-                    System.out.println(cell.getPositionX()+ " " + robot.getPositionX() + " " + cell.getPositionY()+ " " + robot.getPositionY());
-                    System.out.println("start parasitizing");
-                    robot.condition = Condition.TO_PARASIRIZE;
-                    robot.toParasitize(cell);
+                for (Map.Entry<Integer,Cell> entry : cellList.entrySet()){
+                    Cell cell = entry.getValue();
+                    if (closeTo(cell, robot) && !cell.isDead()){
+                        System.out.println("CELL");
+                        System.out.println(cell.getPositionX()+ " " + robot.getPositionX() + " " + cell.getPositionY()+ " " + robot.getPositionY());
+                        System.out.println("start parasitizing");
+                        robot.condition = Condition.TO_PARASIRIZE;
+                        robot.toParasitize(cell);
+                        current = cell;
+                    }
                 }
             }
             else {
                 System.out.println("TO_PARASITIZE");
-                if (cell.isDead()){
+                if (current.isDead()){
                     System.out.println("TO_STARVEAGAIN");
                     robot.toStarveAgain();
                     robot.condition = Condition.TO_MOVE;
@@ -40,7 +46,7 @@ public class Interactions {
             if (robot.condition.equals(Condition.TO_PARASIRIZE)){
                 System.out.println("stop parasitizing");
                 robot.toStarveAgain();
-                cell.toRecover();
+                current.toRecover();
 
             }
             robot.condition = Condition.TO_MOVE;
