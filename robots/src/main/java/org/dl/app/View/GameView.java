@@ -22,39 +22,40 @@ public class GameView extends JPanel {
     private boolean[] cellIsDead = new boolean[]{false, false, false, false, false};
     private final EntityStateProvider entityState;
 
-    public GameView(EntityStateProvider provider){
+    public GameView(EntityStateProvider provider) {
         this.entityState = provider;
         robotView = new RobotView();
         targetView = new TargetView();
-        //this.cellView = new CellView();
-        //this.cellView = new HashMap<>()
-        for (int i = 0; i < 5; i++){
-            cellView.put(i+1, new CellView());
+        for (int i = 0; i < 5; i++) {
+            cellView.put(i + 1, new CellView());
         }
+        CreatorTimer test = new CreatorTimer();
+        this.add(test.progressBar, BorderLayout.SOUTH);
+        // Задаем размеры и расположение панели GameView
+        this.setPreferredSize(new Dimension(800, 600));
     }
 
-    public void update(){
+    public void update() {
         EventQueue.invokeLater(this::repaint);
     }
+
     @Override
-    public void paint(Graphics g)
-    {
+    public void paint(Graphics g) {
         super.paint(g);
-        Graphics2D g2d = (Graphics2D)g;
+        Graphics2D g2d = (Graphics2D) g;
 
         /*if (!cellIsDead){
             cellView.drawCell(g2d, entityState.getCurrentCell());
         }*/
 
-        for (int i = 0; i < 5; i++){
-            if (!cellIsDead[i]){
-                cellView.get(i+1).drawCell(g2d, entityState.getCurrentCell().get(i+1));
+        for (int i = 0; i < 5; i++) {
+            if (!cellIsDead[i]) {
+                cellView.get(i + 1).drawCell(g2d, entityState.getCurrentCell().get(i + 1));
             }
         }
-        if (!robotIsDead){
+        if (!robotIsDead) {
             robotView.drawRobot(g2d, entityState.getCurrentRobot());
         }
-
         targetView.drawTarget(g2d, entityState.getCurrentTarget());
     }
 
@@ -63,7 +64,6 @@ public class GameView extends JPanel {
     }
 
     public void toKillCell(int i) {
-        cellIsDead[i-1] = true;
-
+        cellIsDead[i - 1] = true;
     }
 }

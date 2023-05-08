@@ -95,7 +95,4 @@ public class Robot implements Entity{
         this.provider = provider;
         this.interactions = provider.getInteractions();
     }
-
-
-
 }

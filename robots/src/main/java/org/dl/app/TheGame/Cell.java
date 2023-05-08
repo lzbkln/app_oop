@@ -80,7 +80,6 @@ public class Cell implements Positioned {
         timer = new Timer();
         toLiveALife(1000);
     }
-
     public boolean isDead() {
         return isDead;
     }

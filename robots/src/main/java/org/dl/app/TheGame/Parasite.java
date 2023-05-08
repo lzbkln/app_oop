@@ -61,6 +61,9 @@ public class Parasite extends Robot {
         timer.scheduleAtFixedRate(new CloserToDeath(), 0, 1000);
     }
 
+    public int getTTL(){
+        return ttl;
+    }
 
     public void update(){
         super.update();
