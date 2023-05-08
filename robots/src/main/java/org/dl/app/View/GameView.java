@@ -11,8 +11,6 @@ public class GameView extends JPanel {
     RobotView robotView;
     TargetView targetView;
 
-    //CellView cellView;
-
     Map<Integer, CellView> cellView = new HashMap<>();
 
     private boolean robotIsDead = false;
@@ -29,10 +27,10 @@ public class GameView extends JPanel {
         for (int i = 0; i < 5; i++) {
             cellView.put(i + 1, new CellView());
         }
-        CreatorTimer test = new CreatorTimer();
-        this.add(test.progressBar, BorderLayout.SOUTH);
-        // Задаем размеры и расположение панели GameView
-        this.setPreferredSize(new Dimension(800, 600));
+        CreatorTimer timer = new CreatorTimer();
+        timer.progressBar.setString("TTL");
+        timer.progressBar.setStringPainted(true);
+        this.add(timer.progressBar);
     }
 
     public void update() {
@@ -57,6 +55,7 @@ public class GameView extends JPanel {
             robotView.drawRobot(g2d, entityState.getCurrentRobot());
         }
         targetView.drawTarget(g2d, entityState.getCurrentTarget());
+
     }
 
     public void toKillRobot() {
