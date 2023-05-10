@@ -2,6 +2,7 @@ package org.dl.app.Model;
 
 import org.dl.app.TheGame.Cell;
 import org.dl.app.TheGame.Interactions;
+import org.dl.app.View.CreatorTimer;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -35,6 +36,9 @@ public class EntityStateProvider implements GameStateProvider{
         propChangeDispatcher.firePropertyChange("parasite", false, true);
     }
 
+    public void changeRobotTtl(int ttl){
+        propChangeDispatcher.firePropertyChange("ttl", ttl+1, ttl);
+    }
     public void changeCellCondition(Cell cell){
         Map<Integer, Cell> map = this.getCurrentCell();
         for (Integer i : map.keySet()){
@@ -60,6 +64,10 @@ public class EntityStateProvider implements GameStateProvider{
     @Override
     public Map<Integer, Cell> getCurrentCell() {
         return gameState.getCell();
+    }
+
+    public CreatorTimer getCurrentCreatorTimer(){
+        return gameState.getCreatorTimer();
     }
     public Interactions getInteractions(){return interactions;}
 }

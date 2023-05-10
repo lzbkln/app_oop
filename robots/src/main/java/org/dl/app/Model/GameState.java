@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.dl.app.TheGame.Cell;
 import org.dl.app.TheGame.Parasite;
+import org.dl.app.View.CreatorTimer;
 
 public class GameState {
 
@@ -15,6 +16,8 @@ public class GameState {
     private Target target;
 
     private Map<Integer, Cell> cellList = new HashMap<>();
+
+    private CreatorTimer creatorTimer = new CreatorTimer();
 
     public GameState() {
         this.target = new Target();
@@ -40,6 +43,8 @@ public class GameState {
     }
 
     public Map<Integer, Cell> getCell(){return cellList;}
+
+    public CreatorTimer getCreatorTimer(){return creatorTimer;}
 
     public void update(){
         robot.update();

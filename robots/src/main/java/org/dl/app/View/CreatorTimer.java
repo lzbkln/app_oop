@@ -6,11 +6,10 @@ import javax.swing.*;
 import java.awt.*;
 
 public class CreatorTimer extends JFrame {
-    Parasite parasite;
-    private int TTL = 150; // in seconds
+    //private int TTL = 0; // in seconds
     private static final int DELAY_MS = 50; // частота обновления времени в миллисекундах
 
-    private int lifeTimeSeconds; // текущее время жизни робота в секундах
+    private int lifeTimeSeconds = 140; // текущее время жизни робота в секундах
     JProgressBar progressBar;
 
     public CreatorTimer() {
@@ -20,18 +19,22 @@ public class CreatorTimer extends JFrame {
         setLocationRelativeTo(null);
 
         progressBar = new JProgressBar();
-        progressBar.setMaximum(TTL);
+        progressBar.setMaximum(140);
         add(progressBar, BorderLayout.NORTH);
 
         // создаем таймер для обновления времени
         Timer timer = new Timer(DELAY_MS, e -> {
-            lifeTimeSeconds++;
+            //lifeTimeSeconds--;
             progressBar.setValue(lifeTimeSeconds);
-            if (lifeTimeSeconds >= TTL) {
-                ((Timer)e.getSource()).stop(); // останавливаем таймер при истечении времени жизни робота
+            if (lifeTimeSeconds <= 10) {
+                ((Timer)e.getSource()).stop();// останавливаем таймер при истечении времени жизни робота
             }
         });
         timer.setInitialDelay(0);
         timer.start();
+    }
+
+    public void setTTL(int ttl){
+        this.lifeTimeSeconds= ttl*10;
     }
 }

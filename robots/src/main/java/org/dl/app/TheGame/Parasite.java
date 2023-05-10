@@ -27,6 +27,9 @@ public class Parasite extends Robot {
     class CloserToDeath extends TimerTask {
         public void run() {
             ttl--;
+            if (ttl < 13){
+                provider.changeRobotTtl(ttl);
+            }
             System.out.println(ttl + "left");
             //if (ttl<0){timer.cancel();}
             if (ttl == 0){

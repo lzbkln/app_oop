@@ -1,4 +1,6 @@
 package org.dl.app.Model;
+import org.dl.app.View.CreatorTimer;
+
 import java.awt.*;
 
 public class GameModel {
@@ -21,4 +23,8 @@ public class GameModel {
 
     public Robot getRobot(){return gameState.getRobot();}
     public Target getTarget(){return gameState.getTarget();}
+
+    public CreatorTimer getCreatorTimer(){
+        return gameState.getCreatorTimer();
+    }
 }

@@ -58,10 +58,13 @@ public class ViewModel implements PropertyChangeListener {
     public void propertyChange(PropertyChangeEvent evt) {
         if (evt.getPropertyName().equals("parasite")){
             gameView.toKillRobot();
-        }
-        else {
-            Integer i = (Integer) evt.getNewValue();
+        } else if (evt.getPropertyName().equals("cell")) {
+           Integer i = (Integer) evt.getNewValue();
             gameView.toKillCell(i);
+        }else {
+            int time = (int) evt.getNewValue();
+            gameModel.getCreatorTimer().setTTL(time);
         }
+
     }
 }

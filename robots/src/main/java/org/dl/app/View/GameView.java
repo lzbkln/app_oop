@@ -13,6 +13,8 @@ public class GameView extends JPanel {
 
     Map<Integer, CellView> cellView = new HashMap<>();
 
+    CreatorTimer timer;
+
     private boolean robotIsDead = false;
 
     //private boolean cellIsDead = false;
@@ -27,7 +29,8 @@ public class GameView extends JPanel {
         for (int i = 0; i < 5; i++) {
             cellView.put(i + 1, new CellView());
         }
-        CreatorTimer timer = new CreatorTimer();
+        //CreatorTimer timer = new CreatorTimer();
+        timer = provider.getCurrentCreatorTimer();
         timer.progressBar.setString("TTL");
         timer.progressBar.setStringPainted(true);
         this.add(timer.progressBar);
