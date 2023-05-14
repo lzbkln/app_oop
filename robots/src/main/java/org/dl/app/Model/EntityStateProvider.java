@@ -3,6 +3,7 @@ package org.dl.app.Model;
 import org.dl.app.TheGame.Cell;
 import org.dl.app.TheGame.Interactions;
 import org.dl.app.View.CreatorTimer;
+import org.dl.app.View.VarietyTargets;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -19,12 +20,11 @@ public class EntityStateProvider implements GameStateProvider{
         this.interactions = new Interactions(this.getCurrentCell());
         this.getCurrentRobot().setProvider(this);
         for (Map.Entry<Integer, Cell> entry : this.getCurrentCell().entrySet()){
-            entry.getValue().setProvoder(this);
-
-
+            entry.getValue().setProvider(this);
         }
-        //this.getCurrentCell().setProvoder(this);
-
+        for (Map.Entry<Integer, VarietyTargets> entry : this.getCurrentTargets().entrySet()) {
+            entry.getValue().setProvider(this);
+        }
     }
 
     public void addTextChangeListener(PropertyChangeListener listener)
@@ -64,6 +64,11 @@ public class EntityStateProvider implements GameStateProvider{
     @Override
     public Map<Integer, Cell> getCurrentCell() {
         return gameState.getCell();
+    }
+
+    @Override
+    public Map<Integer, VarietyTargets> getCurrentTargets() {
+        return gameState.getTargets();
     }
 
     public CreatorTimer getCurrentCreatorTimer(){

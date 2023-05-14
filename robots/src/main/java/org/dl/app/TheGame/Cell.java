@@ -46,14 +46,14 @@ public class Cell implements Positioned {
         timer.scheduleAtFixedRate(new CloserToDeath(), 0, period);
     }
 
-    public void setProvoder(EntityStateProvider provider) {
+    public void setProvider(EntityStateProvider provider) {
         this.provider = provider;
     }
 
     class CloserToDeath extends TimerTask {
         public void run() {
             ttl--;
-            System.out.println("cell -" + ttl);
+//            System.out.println("cell -" + ttl);
             if (ttl == 0) {
                 isDead = true;
                 timer.cancel();
