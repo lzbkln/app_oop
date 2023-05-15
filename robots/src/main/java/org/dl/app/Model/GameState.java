@@ -1,15 +1,13 @@
 package org.dl.app.Model;
 
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.dl.app.TheGame.Cell;
 import org.dl.app.TheGame.Parasite;
 import org.dl.app.View.CreatorTimer;
-import org.dl.app.View.VarietyTargets;
+import org.dl.app.TheGame.VarietyTargets;
 
 public class GameState {
 

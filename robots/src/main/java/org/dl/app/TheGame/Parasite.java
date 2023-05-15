@@ -15,7 +15,7 @@ public class Parasite extends Robot {
     Timer timer;
 
 
-    private boolean isDead = false;
+    public boolean isDead = false;
 
     public Parasite(Target target){
         super(target);
@@ -71,7 +71,8 @@ public class Parasite extends Robot {
     public void update(){
         super.update();
         if (interactions != null){
-            interactions.toInteract(target, this);
+            interactions.toInteractWithCells(target, this);
+            interactions.toInteractWithVarietys(target, this);
         }
 
    }

@@ -61,9 +61,12 @@ public class ViewModel implements PropertyChangeListener {
         } else if (evt.getPropertyName().equals("cell")) {
            Integer i = (Integer) evt.getNewValue();
             gameView.toKillCell(i);
-        }else {
+        }else if (evt.getPropertyName().equals("ttl")){
             int time = (int) evt.getNewValue();
             gameModel.getCreatorTimer().setTTL(time);
+        }else {
+            int t = (int)evt.getNewValue();
+            gameView.toKillVarietyTarget(t);
         }
 
     }

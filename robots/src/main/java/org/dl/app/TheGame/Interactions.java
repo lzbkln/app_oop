@@ -8,14 +8,17 @@ public class Interactions {
 
     private Map<Integer, Cell> cellList;
 
-    public Interactions(Map<Integer, Cell> cellList){
+    private Map<Integer, VarietyTargets> targetsList;
+
+    public Interactions(Map<Integer, Cell> cellList, Map<Integer, VarietyTargets> targetsList){
         this.cellList = cellList;
+        this.targetsList = targetsList;
     }
 
-    public void toInteract(Target target, Parasite robot){
+    public void toInteractWithCells(Target target, Parasite robot){
 
         Cell current = new Cell();
-        if (closeTo(target, robot)){
+        if (closeTo(target, robot) && !robot.isDead){
             //System.out.println("EQ");
             if (robot.condition.equals(Condition.TO_MOVE)){
                 //System.out.println("TO_MOVE");
@@ -42,8 +45,7 @@ public class Interactions {
             }
         }
         else {
-            //System.out.println("NO");
-            if (robot.condition.equals(Condition.TO_PARASIRIZE)){
+            if (robot.condition.equals(Condition.TO_PARASIRIZE) && !robot.isDead){
                 System.out.println("stop parasitizing");
                 robot.toStarveAgain();
                 current.toRecover();
@@ -55,14 +57,31 @@ public class Interactions {
 
     }
 
+    public void toInteractWithVarietys(Target target, Parasite robot){
+        if (closeTo(target, robot) && !robot.isDead){
+            if (robot.condition.equals(Condition.TO_MOVE)){
+                for (Map.Entry<Integer,VarietyTargets> entry : targetsList.entrySet()){
+                    VarietyTargets varietyTarget = entry.getValue();
+                    System.out.println(varietyTarget.getPositionX() + " " + robot.getPositionX());
+                    if (closeTo(varietyTarget, robot)){
+                        varietyTarget.toChangeItsState();
+                    }
+                }
+
+            }
+        }
+
+    }
+
     private boolean closeTo(Positioned positioned, Parasite robot){
         double dis = 1.1;
-        if (positioned instanceof Cell){
+        if (positioned instanceof Cell || positioned instanceof  VarietyTargets){
             dis = 14;
             if (Math.abs(positioned.getPositionX() - robot.getPositionX()/2) < dis && Math.abs(positioned.getPositionY() - robot.getPositionY()/2) < dis ){
                 return true;
             }
         }
+        
         if (Math.abs(positioned.getPositionX() - robot.getPositionX()) < dis && Math.abs(positioned.getPositionY() - robot.getPositionY()) < dis ){
             return true;
         }

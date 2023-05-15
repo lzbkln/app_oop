@@ -1,7 +1,7 @@
 package org.dl.app.Model;
 
 import org.dl.app.TheGame.Cell;
-import org.dl.app.View.VarietyTargets;
+import org.dl.app.TheGame.VarietyTargets;
 
 import java.util.Map;
 

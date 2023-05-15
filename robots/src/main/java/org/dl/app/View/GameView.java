@@ -19,6 +19,8 @@ public class GameView extends JPanel {
     private boolean robotIsDead = false;
 
     private boolean[] cellIsDead = new boolean[]{false, false, false, false, false};
+
+    private boolean[] varietyIsDead = new boolean[]{false, false, false, false, false, false, false, false};
     private final EntityStateProvider entityState;
 
     public GameView(EntityStateProvider provider) {
@@ -54,7 +56,10 @@ public class GameView extends JPanel {
             }
         }
         for (int i = 0; i < 8; i++) {
-            targetViewMap.get(i + 1).drawTargets(g2d, entityState.getCurrentTargets().get(i + 1));
+            if (!varietyIsDead[i]){
+                targetViewMap.get(i + 1).drawTargets(g2d, entityState.getCurrentTargets().get(i + 1));
+            }
+
         }
         if (!robotIsDead) {
             robotView.drawRobot(g2d, entityState.getCurrentRobot());
@@ -69,4 +74,6 @@ public class GameView extends JPanel {
     public void toKillCell(int i) {
         cellIsDead[i - 1] = true;
     }
+
+    public void toKillVarietyTarget(int i){varietyIsDead[i-1] = true;}
 }

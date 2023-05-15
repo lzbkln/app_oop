@@ -1,5 +1,7 @@
 package org.dl.app.View;
 
+import org.dl.app.TheGame.VarietyTargets;
+
 import java.awt.*;
 
 import static org.dl.app.View.DrawFigure.drawOval;
