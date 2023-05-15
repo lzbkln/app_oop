@@ -2,10 +2,15 @@ package org.dl.app.Model;
 
 import org.dl.app.TheGame.Interactions;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class Robot implements Entity{
     private double positionX = 100;
     private double positionY = 100;
     protected Target target;
+
+    //protected Timer timer;
 
     public double distance;
 
@@ -14,11 +19,12 @@ public class Robot implements Entity{
     protected EntityStateProvider provider;
 
     public Robot(Target target){
+        //timer = new Timer();
         this.target = target;
     }
 
     private double velocity;
-    public static final double maxVelocity = 0.05;
+    public static double maxVelocity = 0.05;
     public static final double maxAngularVelocity = 0.001;
 
     private double duration = 10.0;
@@ -94,5 +100,20 @@ public class Robot implements Entity{
 
         this.provider = provider;
         this.interactions = provider.getInteractions();
+    }
+
+    public void toChangeVelocity(){
+        //schedule (TimerTask Task, long delay)
+        Timer newTimer = new Timer();
+        maxVelocity = 0.09;
+        newTimer.schedule(new Task(), 6000);
+
+    }
+
+    class Task extends TimerTask {
+        public void run() {
+            maxVelocity = 0.05;
+
+        }
     }
 }

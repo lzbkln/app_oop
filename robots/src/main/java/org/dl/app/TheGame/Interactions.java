@@ -65,9 +65,9 @@ public class Interactions {
                     System.out.println(varietyTarget.getPositionX() + " " + robot.getPositionX());
                     if (closeTo(varietyTarget, robot)){
                         varietyTarget.toChangeItsState();
+                        varietyTarget.toChangeRobotState(robot);
                     }
                 }
-
             }
         }
 
@@ -81,7 +81,7 @@ public class Interactions {
                 return true;
             }
         }
-        
+
         if (Math.abs(positioned.getPositionX() - robot.getPositionX()) < dis && Math.abs(positioned.getPositionY() - robot.getPositionY()) < dis ){
             return true;
         }

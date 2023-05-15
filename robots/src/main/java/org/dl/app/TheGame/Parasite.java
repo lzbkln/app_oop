@@ -7,13 +7,12 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Parasite extends Robot {
-    private int ttl = 14;
+    private int ttl = 18;
 
+    Timer timer;
     public double prevDistance = 0;
 
     public Condition condition;
-    Timer timer;
-
 
     public boolean isDead = false;
 

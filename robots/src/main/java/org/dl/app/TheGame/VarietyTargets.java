@@ -1,6 +1,7 @@
 package org.dl.app.TheGame;
 
 import org.dl.app.Model.EntityStateProvider;
+import org.dl.app.Model.Robot;
 
 import java.util.Random;
 
@@ -32,6 +33,10 @@ public class VarietyTargets implements Positioned{
 
     public void toChangeItsState(){
         provider.changeVarietyTargerCondition(this);
+    }
+
+    public void toChangeRobotState(Robot robot){
+        robot.toChangeVelocity();
     }
 
 }
