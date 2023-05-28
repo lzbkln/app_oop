@@ -19,16 +19,10 @@ public class Interactions {
 
         Cell current = new Cell();
         if (closeTo(target, robot) && !robot.isDead){
-            //System.out.println("EQ");
             if (robot.condition.equals(Condition.TO_MOVE)){
-                //System.out.println("TO_MOVE");
-                //System.out.println(cell.getPositionX()+ " " + robot.getPositionX() + " " + cell.getPositionY()+ " " + robot.getPositionY());
                 for (Map.Entry<Integer,Cell> entry : cellList.entrySet()){
                     Cell cell = entry.getValue();
                     if (closeTo(cell, robot) && !cell.isDead()){
-                        System.out.println("CELL");
-                        System.out.println(cell.getPositionX()+ " " + robot.getPositionX() + " " + cell.getPositionY()+ " " + robot.getPositionY());
-                        System.out.println("start parasitizing");
                         robot.condition = Condition.TO_PARASIRIZE;
                         robot.toParasitize(cell);
                         current = cell;
@@ -36,9 +30,7 @@ public class Interactions {
                 }
             }
             else {
-                System.out.println("TO_PARASITIZE");
                 if (current.isDead()){
-                    System.out.println("TO_STARVEAGAIN");
                     robot.toStarveAgain();
                     robot.condition = Condition.TO_MOVE;
                 }
@@ -46,7 +38,6 @@ public class Interactions {
         }
         else {
             if (robot.condition.equals(Condition.TO_PARASIRIZE) && !robot.isDead){
-                System.out.println("stop parasitizing");
                 robot.toStarveAgain();
                 current.toRecover();
 
@@ -62,7 +53,6 @@ public class Interactions {
             if (robot.condition.equals(Condition.TO_MOVE)){
                 for (Map.Entry<Integer,VarietyTargets> entry : targetsList.entrySet()){
                     VarietyTargets varietyTarget = entry.getValue();
-                    System.out.println(varietyTarget.getPositionX() + " " + robot.getPositionX());
                     if (closeTo(varietyTarget, robot)){
                         varietyTarget.toChangeItsState();
                     }

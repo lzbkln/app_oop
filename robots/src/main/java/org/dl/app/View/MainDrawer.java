@@ -22,7 +22,6 @@ public class MainDrawer extends JFrame {
 
         LogWindow logWindow = createLogWindow();
         addWindow(logWindow);
-
         GameWindow gameWindow = new GameWindow(viewModel.getGameView());
         gameWindow.setSize(400,  400);
         addWindow(gameWindow);
@@ -30,7 +29,7 @@ public class MainDrawer extends JFrame {
         windows.add(logWindow);
         windows.add(gameWindow);
 
-        MenuBarView menuBar = new MenuBarView(this, windows);
+        MenuBarView menuBar = new MenuBarView(this, windows,gameWindow);
         setJMenuBar(menuBar.generateMenu());
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         addClosingEvent();

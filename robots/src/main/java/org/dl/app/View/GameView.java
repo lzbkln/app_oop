@@ -11,8 +11,8 @@ public class GameView extends JPanel {
     RobotView robotView;
     TargetView targetView;
 
-    Map<Integer, CellView> cellView = new HashMap<>();
-    Map<Integer, VarietyTargetsView> targetViewMap = new HashMap<>();
+    Map<Integer, CellView> cellView ;
+    Map<Integer, VarietyTargetsView> targetViewMap;
 
     CreatorTimer timer;
 
@@ -24,6 +24,8 @@ public class GameView extends JPanel {
     private final EntityStateProvider entityState;
 
     public GameView(EntityStateProvider provider) {
+        this.cellView = new HashMap<>();
+        this.targetViewMap  = new HashMap<>();
         this.entityState = provider;
         robotView = new RobotView();
         targetView = new TargetView();
@@ -33,7 +35,6 @@ public class GameView extends JPanel {
         for (int i = 0; i < 8; i++) {
             targetViewMap.put(i + 1, new VarietyTargetsView());
         }
-
         timer = provider.getCurrentCreatorTimer();
         timer.progressBar.setString("TTL");
         timer.progressBar.setStringPainted(true);
@@ -51,7 +52,6 @@ public class GameView extends JPanel {
 
         for (int i = 0; i < 5; i++) {
             if (!cellIsDead[i]) {
-                System.out.println(entityState.getCurrentCell().get(i + 1));
                 cellView.get(i + 1).drawCell(g2d, entityState.getCurrentCell().get(i + 1));
             }
         }
@@ -64,7 +64,7 @@ public class GameView extends JPanel {
         if (!robotIsDead) {
             robotView.drawRobot(g2d, entityState.getCurrentRobot());
         }
-        targetView.drawTarget(g2d, entityState.getCurrentTarget()); // убрать эту строку, будем направлять роботом просто нажатием(когда клик будет совпадать с координатами точки)
+        targetView.drawTarget(g2d, entityState.getCurrentTarget());
     }
 
     public void toKillRobot() {
