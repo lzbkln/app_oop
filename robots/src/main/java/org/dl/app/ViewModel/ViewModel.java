@@ -3,10 +3,9 @@ package org.dl.app.ViewModel;
 
 import org.dl.app.Model.EntityStateProvider;
 import org.dl.app.Model.GameModel;
-import org.dl.app.TheGame.Interactions;
 import org.dl.app.View.GameView;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.Timer;
@@ -43,11 +42,10 @@ public class ViewModel implements PropertyChangeListener {
             }
         }, 0, 10);
 
-        gameView.addMouseListener(new MouseAdapter() {
+        gameView.addMouseMotionListener(new MouseMotionAdapter(){
             @Override
-            public void mouseClicked(MouseEvent e) {
+            public void mouseMoved(MouseEvent e) {
                 gameModel.change(e.getPoint());
-                gameView.repaint();
             }
         });
 

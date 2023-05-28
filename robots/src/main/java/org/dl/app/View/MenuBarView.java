@@ -12,10 +12,12 @@ import java.util.Locale;
 public class MenuBarView {
     private final JFrame mainFrame;
     private final ArrayList<AbstractWindow> windows;
+    private GameWindow gameWindow;
 
-    public MenuBarView(JFrame mainFrame, ArrayList<AbstractWindow> windows) {
+    public MenuBarView(JFrame mainFrame, ArrayList<AbstractWindow> windows,GameWindow gameWindow) {
         this.mainFrame = mainFrame;
         this.windows = windows;
+        this.gameWindow = gameWindow;
     }
 
     public JMenuBar generateMenu() {
@@ -25,6 +27,7 @@ public class MenuBarView {
         menuBar.add(generateLookAndFeelItem());
         menuBar.add(generateLogMenu());
         menuBar.add(generateExitMenu());
+        menuBar.add(generateRestart());
         return menuBar;
     }
 
@@ -46,7 +49,15 @@ public class MenuBarView {
         local.add(setLangRu);
         return local;
     }
-
+    private JMenu generateRestart() {
+        JMenu restartButton = new JMenu(Localisation.getString("restart"));
+        JMenuItem exitMenuItem = new JMenuItem(Localisation.getString("restart"));
+        exitMenuItem.addActionListener((event) -> {
+            gameWindow.restart();
+        });
+        restartButton.add(exitMenuItem);
+        return restartButton;
+    }
     private JMenu generateExitMenu() {
         JMenu exitMenu = new JMenu(Localisation.getString("exit"));
         JMenuItem exitMenuItem = new JMenuItem(Localisation.getString("exit"));
