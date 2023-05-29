@@ -50,6 +50,7 @@ public class Parasite extends Robot {
 
     public void toStarveAgain(){
         timer.cancel();
+        condition = Condition.TO_MOVE;
         System.out.println("to st again, ttl - " + ttl);
         if (ttl <= 0){
             isDead = true;

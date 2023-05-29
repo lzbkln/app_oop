@@ -14,9 +14,10 @@ public class Cell implements Positioned {
 
     private boolean isSeek = false;
 
+    public boolean isDead = false;
+
     private Parasite parasite;
     private volatile double y;
-    private boolean isDead = false;
 
     Random random;
 
@@ -57,7 +58,6 @@ public class Cell implements Positioned {
         public void run() {
             ttl--;
             if (ttl == 0) {
-                isDead = true;
                 timer.cancel();
                 if (isSeek){parasite.toStarveAgain();}
                 setFeatures();
@@ -80,11 +80,12 @@ public class Cell implements Positioned {
         timer = new Timer();
         toLiveALife(1000);
     }
-    public boolean isDead() {
-        return isDead;
-    }
 
     public int getTtl(){
         return ttl;
+    }
+
+    public boolean isDead(){
+        return isDead;
     }
 }

@@ -22,7 +22,7 @@ public class Interactions {
             if (robot.condition.equals(Condition.TO_MOVE)){
                 for (Map.Entry<Integer,Cell> entry : cellList.entrySet()){
                     Cell cell = entry.getValue();
-                    if (closeTo(cell, robot) && !cell.isDead()){
+                    if (closeTo(cell, robot)){
                         robot.condition = Condition.TO_PARASIRIZE;
                         robot.toParasitize(cell);
                         current = cell;
