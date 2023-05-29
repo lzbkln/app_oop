@@ -22,7 +22,7 @@ public class GameState {
     public GameState() {
         this.target = new Target();
         this.robot = new Parasite(target);
-        for (int i = 0; i < 5; i++){
+        for (int i = 0; i < 7; i++){
             cellList.put(i + 1, new Cell());
         }
         for (int i = 0; i < 8; i++){

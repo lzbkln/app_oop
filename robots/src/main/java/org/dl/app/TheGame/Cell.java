@@ -31,8 +31,8 @@ public class Cell implements Positioned {
 
     private void setFeatures(){
         ttl = random.nextInt(10, 40);
-        this.x = random.nextInt(10, 300);
-        this.y = random.nextInt(10, 300);
+        this.x = random.nextInt(20, 300);
+        this.y = random.nextInt(20, 300);
         timer = new Timer();
         toLiveALife(1000);
     }
@@ -82,5 +82,9 @@ public class Cell implements Positioned {
     }
     public boolean isDead() {
         return isDead;
+    }
+
+    public int getTtl(){
+        return ttl;
     }
 }

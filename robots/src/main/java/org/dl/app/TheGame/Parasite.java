@@ -29,7 +29,6 @@ public class Parasite extends Robot {
             if (ttl < 13){
                 provider.changeRobotTtl((int)ttl);
             }
-            System.out.println("closer to death ttl -" + ttl);
             if (ttl <= 0){
                 isDead = true;
                 timer.cancel();
@@ -41,6 +40,7 @@ public class Parasite extends Robot {
     }
 
     public void toParasitize(Cell cell){
+        System.out.println("parasitize");
         timer.cancel();
         timer = new Timer();
         toEat();
@@ -51,13 +51,15 @@ public class Parasite extends Robot {
     public void toStarveAgain(){
         timer.cancel();
         System.out.println("to st again, ttl - " + ttl);
-        if (ttl == 0){
+        if (ttl <= 0){
             isDead = true;
             provider.changeRobotCondition();
+        }else {
+            timer = new Timer();
+            toLiveALife();
+            System.out.println("to live a life");
         }
-        timer = new Timer();
-        toLiveALife();
-        System.out.println("to live a life");
+
     }
 
     class Eating extends TimerTask{

@@ -29,7 +29,7 @@ public class GameView extends JPanel {
         this.entityState = provider;
         robotView = new RobotView();
         targetView = new TargetView();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 7; i++) {
             cellView.put(i + 1, new CellView());
         }
         for (int i = 0; i < 8; i++) {
@@ -50,7 +50,7 @@ public class GameView extends JPanel {
         super.paint(g);
         Graphics2D g2d = (Graphics2D) g;
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 7; i++) {
             cellView.get(i + 1).drawCell(g2d, entityState.getCurrentCell().get(i + 1));
         }
         for (int i = 0; i < 8; i++) {
