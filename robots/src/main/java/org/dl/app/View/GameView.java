@@ -51,9 +51,7 @@ public class GameView extends JPanel {
         Graphics2D g2d = (Graphics2D) g;
 
         for (int i = 0; i < 5; i++) {
-            if (!cellIsDead[i]) {
-                cellView.get(i + 1).drawCell(g2d, entityState.getCurrentCell().get(i + 1));
-            }
+            cellView.get(i + 1).drawCell(g2d, entityState.getCurrentCell().get(i + 1));
         }
         for (int i = 0; i < 8; i++) {
             if (!varietyIsDead[i]){

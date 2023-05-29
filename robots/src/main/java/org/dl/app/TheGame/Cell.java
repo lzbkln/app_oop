@@ -31,8 +31,8 @@ public class Cell implements Positioned {
 
     private void setFeatures(){
         ttl = random.nextInt(10, 40);
-        this.x = random.nextInt(30, 350);
-        this.y = random.nextInt(30, 350);
+        this.x = random.nextInt(10, 300);
+        this.y = random.nextInt(10, 300);
         timer = new Timer();
         toLiveALife(1000);
     }
@@ -56,15 +56,11 @@ public class Cell implements Positioned {
     class CloserToDeath extends TimerTask {
         public void run() {
             ttl--;
-//            System.out.println("cell -" + ttl);
             if (ttl == 0) {
                 isDead = true;
                 timer.cancel();
                 if (isSeek){parasite.toStarveAgain();}
                 setFeatures();
-               /*if (provider != null){
-                    provider.changeCellCondition(Cell.this);
-                } */
             }
 
         }

@@ -10,14 +10,16 @@ public class VarietyTargets implements Positioned{
     private volatile double x;
     private volatile double y;
 
-    private int healthPoints;
     private EntityStateProvider provider;
 
     public VarietyTargets() {
         random = new Random();
+        setFeatures();
+    }
+
+    private void setFeatures(){
         this.x = random.nextInt(30, 350);
         this.y = random.nextInt(30, 350);
-        this.healthPoints = random.nextInt(4, 6);
     }
 
     public double getPositionX() {

@@ -7,7 +7,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Parasite extends Robot {
-    private int ttl = 18;
+    private float ttl = 18;
 
     Timer timer;
     public double prevDistance = 0;
@@ -27,9 +27,10 @@ public class Parasite extends Robot {
         public void run() {
             ttl--;
             if (ttl < 13){
-                provider.changeRobotTtl(ttl);
+                provider.changeRobotTtl((int)ttl);
             }
-            if (ttl == 0){
+            System.out.println("closer to death ttl -" + ttl);
+            if (ttl <= 0){
                 isDead = true;
                 timer.cancel();
                 if (provider != null){
@@ -39,25 +40,38 @@ public class Parasite extends Robot {
         }
     }
 
-
     public void toParasitize(Cell cell){
         timer.cancel();
+        timer = new Timer();
+        toEat();
+        condition = Condition.TO_PARASIRIZE;
         cell.toSlowlyDieCauseParasite(this);
-
     }
 
     public void toStarveAgain(){
+        timer.cancel();
+        System.out.println("to st again, ttl - " + ttl);
+        if (ttl == 0){
+            isDead = true;
+            provider.changeRobotCondition();
+        }
         timer = new Timer();
         toLiveALife();
+        System.out.println("to live a life");
     }
 
+    class Eating extends TimerTask{
+
+        @Override
+        public void run() {
+            ttl+=0.5;
+            provider.changeRobotTtl((int)ttl);
+        }
+    }
+    private void toEat(){timer.scheduleAtFixedRate(new Eating(), 0, 1000);}
 
     private void toLiveALife(){
         timer.scheduleAtFixedRate(new CloserToDeath(), 0, 1000);
-    }
-
-    public int getTTL(){
-        return ttl;
     }
 
     public void update(){
