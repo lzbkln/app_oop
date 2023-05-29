@@ -26,12 +26,15 @@ public class Cell implements Positioned {
 
     public Cell() {
         random = new Random();
-        ttl = random.nextInt(15, 90);
-        this.x = random.nextInt(50, 300);
-        this.y = random.nextInt(50, 300);
+        setFeatures();
+    }
+
+    private void setFeatures(){
+        ttl = random.nextInt(10, 40);
+        this.x = random.nextInt(30, 350);
+        this.y = random.nextInt(30, 350);
         timer = new Timer();
         toLiveALife(1000);
-        //потом сделать рандом
     }
 
     public double getPositionX() {
@@ -58,9 +61,10 @@ public class Cell implements Positioned {
                 isDead = true;
                 timer.cancel();
                 if (isSeek){parasite.toStarveAgain();}
-                if (provider != null){
+                setFeatures();
+               /*if (provider != null){
                     provider.changeCellCondition(Cell.this);
-                }
+                } */
             }
 
         }
