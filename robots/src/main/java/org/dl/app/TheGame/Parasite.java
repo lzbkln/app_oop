@@ -60,7 +60,6 @@ public class Parasite extends Robot {
             toLiveALife();
             System.out.println("to live a life");
         }
-
     }
 
     class Eating extends TimerTask{

@@ -49,7 +49,6 @@ public class GameView extends JPanel {
     public void paint(Graphics g) {
         super.paint(g);
         Graphics2D g2d = (Graphics2D) g;
-
         for (int i = 0; i < 7; i++) {
             cellView.get(i + 1).drawCell(g2d, entityState.getCurrentCell().get(i + 1));
         }
